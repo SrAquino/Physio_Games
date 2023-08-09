@@ -1,20 +1,49 @@
 extends Node2D
 
-var speed = 10
+var speed = 100
+const pre_tiro = preload("res://Jogo1/Cenas/tiro.tscn")
 
-func _ready():
-	pass
+func _ready():	
+	#Inicia a nave no centro
+	global_position.x = 80
+	global_position.y = 267
 	
 func _process(delta):
-	movePlayer_teclado()
-	pass
+	#Mantém a nave dentro do limite
+	limites_movimento()
 	
-func movePlayer_teclado():
-	if Input.is_action_pressed("ui_left"):
-		translate(Vector2(-1,0)*speed)
-	if Input.is_action_pressed("ui_right"):
-		translate(Vector2(1,0)*speed)
-	if Input.is_action_pressed("ui_up"):
-		translate(Vector2(0,-1)*speed)
-	if Input.is_action_pressed("ui_down"):
-			translate(Vector2(0,1)*speed)
+	#Controla a nave pelo teclado	
+	control_teclado(delta)
+
+func limites_movimento():
+	global_position.x = clamp(global_position.x, 10, 150)
+	global_position.y = clamp(global_position.y, 24, 277)
+
+func cadence():
+	if get_tree().get_nodes_in_group("Tiros").size() < 3:
+		return 1
+	else: 
+		return 0
+
+func control_teclado(delta: float):
+	movePlayer_teclado(delta)
+	tiro_teclado()
+
+func tiro_teclado():
+	if Input.is_action_just_pressed("ui_accept"):
+		#Controla a cadência de tiros
+		if cadence() == 1:
+			var tiro = pre_tiro.instance()
+			get_parent().add_child(tiro)
+			tiro.global_position = $main_cannon.global_position
+	
+func movePlayer_teclado(delta: float):
+	#Movimentações
+	translate(Vector2(Input.get_axis("ui_left","ui_right") * speed * delta, 0)) 
+	translate(Vector2(0,Input.get_axis("ui_up","ui_down") * speed * delta))
+	
+
+
+
+func _on_Area2D_area_entered(area):
+	queue_free()
