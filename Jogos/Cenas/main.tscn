@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Imagens/Physio Games Logo.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Sistema/Buttons_Action.gd" type="Script" id=2]
+[ext_resource path="res://Fontes/COUR.TTF" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=3]
+size = 150
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=1]
+
+[sub_resource type="DynamicFont" id=4]
+size = 150
+font_data = ExtResource( 3 )
+
+[node name="Background" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PhysioGamesLogo" type="Sprite" parent="."]
+position = Vector2( 640, 0 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( -960, 0 )
+
+[node name="Sair" type="Button" parent="PhysioGamesLogo"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -1460.0
+margin_top = 1600.0
+margin_right = -460.0
+margin_bottom = 1800.0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 3 )
+text = "Sair"
+
+[node name="Iniciar" type="Button" parent="PhysioGamesLogo"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -1460.0
+margin_top = 1200.0
+margin_right = -460.0
+margin_bottom = 1400.0
+mouse_default_cursor_shape = 2
+theme = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Iniciar"
+script = ExtResource( 2 )
+
+[node name="BarraLateralDireita" type="ColorRect" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -640.0
+color = Color( 0, 0.2, 0.6, 1 )
+
+[connection signal="pressed" from="PhysioGamesLogo/Sair" to="PhysioGamesLogo/Iniciar" method="_on_Sair_pressed"]
+[connection signal="pressed" from="PhysioGamesLogo/Iniciar" to="PhysioGamesLogo/Iniciar" method="_on_Iniciar_pressed"]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background.png-2d441528215b59d8a3287209fdf91d05.stex"
+path="res://.import/Physio Games Logo.png-fce8fd46ffe6e1bfc090f776177c13ac.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Jogo1/sprites/background.png"
-dest_files=[ "res://.import/background.png-2d441528215b59d8a3287209fdf91d05.stex" ]
+source_file="res://Imagens/Physio Games Logo.png"
+dest_files=[ "res://.import/Physio Games Logo.png-fce8fd46ffe6e1bfc090f776177c13ac.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

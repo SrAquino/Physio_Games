@@ -25,6 +25,7 @@ extents = Vector2( 2.58038, 2.05548 )
 
 [node name="Tiro" type="Node2D" groups=["Tiros"]]
 position = Vector2( -0.5, 0 )
+scale = Vector2( 5, 5 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

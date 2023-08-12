@@ -1,6 +1,6 @@
 extends Node2D
 
-var speed = 10
+export var speed = 50
 var escolhido = 0
 
 func _ready():
@@ -21,7 +21,19 @@ func _ready():
 	
 
 func _process(delta):
+	movimenta(delta)
+	reposiciona()
+
+#Faz o asteroid descer
+func movimenta(delta: float):
 	translate(Vector2(0, 1) * speed * delta)
 
+#Se o asteroid passa, ele volta pro topo em entra posição x
+func reposiciona():
+	if global_position.y > 981:
+		global_position.y = -30
+		global_position.x = (randi()%1815)+106
+
+#Identifica colisão
 func _on_Area2D_area_entered(area):
 	queue_free()

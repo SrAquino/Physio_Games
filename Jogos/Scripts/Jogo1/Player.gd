@@ -1,6 +1,6 @@
 extends Node2D
 
-var speed = 100
+export var speed = 100
 const pre_tiro = preload("res://Jogo1/Cenas/tiro.tscn")
 
 func _ready():	
@@ -16,8 +16,8 @@ func _process(delta):
 	control_teclado(delta)
 
 func limites_movimento():
-	global_position.x = clamp(global_position.x, 10, 150)
-	global_position.y = clamp(global_position.y, 24, 277)
+	global_position.x = clamp(global_position.x, 106, 1815)
+	global_position.y = clamp(global_position.y, 121, 981)
 
 func cadence():
 	if get_tree().get_nodes_in_group("Tiros").size() < 3:
@@ -42,8 +42,5 @@ func movePlayer_teclado(delta: float):
 	translate(Vector2(Input.get_axis("ui_left","ui_right") * speed * delta, 0)) 
 	translate(Vector2(0,Input.get_axis("ui_up","ui_down") * speed * delta))
 	
-
-
-
 func _on_Area2D_area_entered(area):
 	queue_free()

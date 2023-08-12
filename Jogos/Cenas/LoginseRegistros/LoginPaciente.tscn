@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Sistema/Buttons_Action.gd" type="Script" id=1]
+[ext_resource path="res://Fontes/COUR.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/Sistema/Dropdowns/DropdownPacientes.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+font_data = ExtResource( 2 )
+
+[node name="Background" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -590, -45 )
+
+[node name="BarraSuperior" type="ColorRect" parent="."]
+anchor_right = 1.0
+margin_bottom = 108.0
+color = Color( 0, 0.2, 0.6, 1 )
+
+[node name="Label" type="Label" parent="BarraSuperior"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+text = "Login Paciente"
+align = 1
+valign = 1
+
+[node name="DropdownPacientes" type="OptionButton" parent="."]
+margin_left = 480.0
+margin_top = 440.0
+margin_right = 1440.0
+margin_bottom = 575.0
+script = ExtResource( 3 )
+
+[node name="novo_Registro_P" type="Button" parent="."]
+margin_left = 480.0
+margin_top = 880.0
+margin_right = 780.0
+margin_bottom = 950.0
+custom_fonts/font = SubResource( 3 )
+text = "Registrar"
+
+[node name="Entrar_P" type="Button" parent="."]
+margin_left = 1536.0
+margin_top = 880.0
+margin_right = 1836.0
+margin_bottom = 950.0
+custom_fonts/font = SubResource( 3 )
+text = "Entrar"
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="novo_Registro_P" to="Entrar_P" method="_on_novo_Registro_P_pressed"]
+[connection signal="pressed" from="Entrar_P" to="Entrar_P" method="_on_Entrar_P_pressed"]
