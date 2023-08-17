@@ -1,7 +1,9 @@
 extends Node2D
 
-export var speed = 100
+export var speed = 200
 const pre_tiro = preload("res://Jogo1/Cenas/tiro.tscn")
+signal destruido(node)
+var lifes
 
 func _ready():	
 	#Inicia a nave no centro
@@ -43,4 +45,6 @@ func movePlayer_teclado(delta: float):
 	translate(Vector2(0,Input.get_axis("ui_up","ui_down") * speed * delta))
 	
 func _on_Area2D_area_entered(area):
-	queue_free()
+	emit_signal("destruido",self)
+	if lifes == 0:
+		queue_free()

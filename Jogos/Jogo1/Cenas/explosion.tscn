@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Jogo1/Explosion.gd" type="Script" id=1]
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.385542, 0.740964, 0.831325 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0 )
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Particles2D" type="CPUParticles2D" parent="."]
+material = SubResource( 2 )
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 0.77
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+damping = 40.0
+scale_amount = 15.0
+scale_amount_random = 0.81
+color_ramp = SubResource( 1 )

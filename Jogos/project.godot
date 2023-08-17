@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 FadeTransitions="*res://Cenas/Transições/Fade_Transitions.tscn"
+Firebase="*res://static/Firebase.gd"
 
 [display]
 

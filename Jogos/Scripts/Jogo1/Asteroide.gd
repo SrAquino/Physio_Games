@@ -1,7 +1,9 @@
 extends Node2D
 
-export var speed = 50
+export var speed = 90
 var escolhido = 0
+
+signal destruido(node)
 
 func _ready():
 	#Faz a função rand() ser diferete a cada inicio 
@@ -30,10 +32,11 @@ func movimenta(delta: float):
 
 #Se o asteroid passa, ele volta pro topo em entra posição x
 func reposiciona():
-	if global_position.y > 981:
-		global_position.y = -30
+	if global_position.y > 1300:
+		global_position.y = -150
 		global_position.x = (randi()%1815)+106
 
 #Identifica colisão
 func _on_Area2D_area_entered(area):
+	emit_signal("destruido",self)
 	queue_free()
