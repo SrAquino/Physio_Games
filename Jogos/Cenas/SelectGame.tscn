@@ -1,51 +1,53 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Fontes/COUR.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://Fontes/Fontes_Formatadas/insideDropdownAndLineEdit.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scripts/Sistema/Buttons_Action.gd" type="Script" id=2]
 [ext_resource path="res://Jogo1/Cenas/Capa1.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Sistema/SelectGame.gd" type="Script" id=4]
+[ext_resource path="res://Fontes/Fontes_Formatadas/Botoes.tres" type="DynamicFont" id=5]
 
-[sub_resource type="DynamicFont" id=2]
-size = 40
-font_data = ExtResource( 1 )
-
-[node name="Background" type="ColorRect"]
+[node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 960, 0 )
+script = ExtResource( 2 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 752, 596 )
 script = ExtResource( 4 )
 
-[node name="BarraLateralDireita" type="ColorRect" parent="."]
+[node name="BarraLateralDireita" type="ColorRect" parent="Background"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -640.0
 color = Color( 0, 0.2, 0.6, 1 )
 
-[node name="Ini_Jogo" type="Button" parent="BarraLateralDireita"]
-margin_left = 170.0
-margin_top = 880.0
-margin_right = 470.0
-margin_bottom = 950.0
-rect_pivot_offset = Vector2( 150, 0 )
-custom_fonts/font = SubResource( 2 )
-text = "Entrar"
-script = ExtResource( 2 )
-
-[node name="GameCapa" type="Sprite" parent="BarraLateralDireita"]
+[node name="GameCapa" type="Sprite" parent="Background/BarraLateralDireita"]
 position = Vector2( -1280, 0 )
 
-[node name="Selecione um jogo" type="Node2D" parent="BarraLateralDireita/GameCapa"]
+[node name="Selecione um jogo" type="Node2D" parent="Background/BarraLateralDireita/GameCapa"]
 
-[node name="AsteroideTerapia" parent="BarraLateralDireita/GameCapa" instance=ExtResource( 3 )]
+[node name="AsteroideTerapia" parent="Background/BarraLateralDireita/GameCapa" instance=ExtResource( 3 )]
 visible = false
 position = Vector2( 1600, 430 )
 
-[node name="DropdownGames" type="OptionButton" parent="."]
+[node name="DropdownGames" type="OptionButton" parent="Background"]
 margin_left = 160.0
 margin_top = 480.0
 margin_right = 1120.0
 margin_bottom = 615.0
+custom_fonts/font = ExtResource( 1 )
 
-[connection signal="pressed" from="BarraLateralDireita/Ini_Jogo" to="BarraLateralDireita/Ini_Jogo" method="_on_Ini_Jogo_pressed"]
-[connection signal="item_selected" from="DropdownGames" to="." method="_on_DropdownGames_item_selected"]
+[node name="Ini_Jogo" type="Button" parent="Background"]
+margin_left = 1440.0
+margin_top = 880.0
+margin_right = 1840.0
+margin_bottom = 960.0
+rect_pivot_offset = Vector2( 150, 0 )
+custom_fonts/font = ExtResource( 5 )
+text = "Entrar"
+
+[connection signal="item_selected" from="Background/DropdownGames" to="Background" method="_on_DropdownGames_item_selected"]
+[connection signal="pressed" from="Background/Ini_Jogo" to="." method="_on_Ini_Jogo_pressed"]

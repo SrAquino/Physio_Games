@@ -14,5 +14,6 @@ func asteroid_destroied(asteroid):
 func player_destroied(jogador):
 	lifes -= 1
 	$lifes.text = str(lifes)+"x"
-	if lifes == 0:
+	if lifes == 1:
 		jogador.lifes = 0
+		Global.global_score = score

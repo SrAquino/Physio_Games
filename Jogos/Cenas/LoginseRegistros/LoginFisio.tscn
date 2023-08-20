@@ -1,57 +1,111 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Fontes/COUR.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://Fontes/Fontes_Formatadas/insideDropdownAndLineEdit.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scripts/Sistema/Buttons_Action.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Sistema/Dropdowns/DropdownFisios.gd" type="Script" id=3]
-
-[sub_resource type="DynamicFont" id=1]
-size = 100
-font_data = ExtResource( 1 )
+[ext_resource path="res://Fontes/Arial/arialbd.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Fontes/Arial/arial.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Fontes/Arial/ariali.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Fontes/Fontes_Formatadas/Botoes.tres" type="DynamicFont" id=7]
 
 [sub_resource type="DynamicFont" id=4]
-size = 40
-font_data = ExtResource( 1 )
+size = 80
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
 
-[node name="Background" type="ColorRect"]
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 40
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 35
+font_data = ExtResource( 6 )
+
+[node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 2 )
 
-[node name="BarraSuperior" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
-margin_bottom = 108.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -651, 76 )
+
+[node name="BarraSuperior" type="ColorRect" parent="Background"]
+anchor_right = 1.0
+margin_bottom = 158.0
 color = Color( 0, 0.2, 0.6, 1 )
 
-[node name="Label" type="Label" parent="BarraSuperior"]
+[node name="Label" type="Label" parent="Background/BarraSuperior"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Login Fisioterapeuta"
 align = 1
 valign = 1
 
-[node name="DropdownFisios" type="OptionButton" parent="."]
+[node name="DropdownFisios" type="OptionButton" parent="Background"]
 margin_left = 480.0
-margin_top = 440.0
+margin_top = 315.0
 margin_right = 1440.0
-margin_bottom = 575.0
+margin_bottom = 450.0
+custom_fonts/font = ExtResource( 1 )
+text = "Selecione seu e-mail"
 script = ExtResource( 3 )
 
-[node name="novo_Registro_F" type="Button" parent="."]
+[node name="novo_Registro_F" type="Button" parent="Background"]
 margin_left = 480.0
 margin_top = 880.0
-margin_right = 780.0
-margin_bottom = 950.0
-custom_fonts/font = SubResource( 4 )
+margin_right = 880.0
+margin_bottom = 960.0
+custom_fonts/font = SubResource( 1 )
 text = "Registrar"
 
-[node name="Entrar_F" type="Button" parent="."]
-margin_left = 1536.0
+[node name="Entrar_F" type="Button" parent="Background"]
+margin_left = 1440.0
 margin_top = 880.0
-margin_right = 1836.0
-margin_bottom = 950.0
-custom_fonts/font = SubResource( 4 )
+margin_right = 1840.0
+margin_bottom = 960.0
+custom_fonts/font = SubResource( 1 )
 text = "Entrar"
-script = ExtResource( 2 )
 
-[connection signal="pressed" from="novo_Registro_F" to="Entrar_F" method="_on_novo_Registro_F_pressed"]
-[connection signal="pressed" from="Entrar_F" to="Entrar_F" method="_on_Entrar_F_pressed"]
+[node name="Senha" type="LineEdit" parent="Background"]
+margin_left = 486.0
+margin_top = 585.0
+margin_right = 1446.0
+margin_bottom = 720.0
+custom_fonts/font = ExtResource( 1 )
+secret = true
+
+[node name="senha" type="Label" parent="Background/Senha"]
+margin_top = -60.0
+margin_right = 120.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Senha"
+
+[node name="messageError" type="Label" parent="Background"]
+margin_left = 1440.0
+margin_top = 800.0
+margin_right = 1840.0
+margin_bottom = 880.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 6 )
+
+[node name="esqueciSenha" type="Button" parent="Background"]
+margin_left = 1481.0
+margin_top = 627.0
+margin_right = 1799.0
+margin_bottom = 677.0
+custom_fonts/font = ExtResource( 7 )
+text = "Esqueci minha senha"
+
+[connection signal="pressed" from="Background/novo_Registro_F" to="." method="_on_novo_Registro_F_pressed"]
+[connection signal="pressed" from="Background/Entrar_F" to="." method="_on_Entrar_F_pressed"]
+[connection signal="pressed" from="Background/esqueciSenha" to="." method="_on_esqueciSenha_pressed"]

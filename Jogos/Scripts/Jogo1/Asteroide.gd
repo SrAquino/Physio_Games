@@ -1,6 +1,6 @@
 extends Node2D
 
-export var speed = 90
+export var speed = 150
 var escolhido = 0
 
 signal destruido(node)

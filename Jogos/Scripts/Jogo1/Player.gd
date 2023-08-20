@@ -1,14 +1,15 @@
 extends Node2D
 
-export var speed = 200
+export var speed = 350
 const pre_tiro = preload("res://Jogo1/Cenas/tiro.tscn")
 signal destruido(node)
 var lifes
 
+
 func _ready():	
 	#Inicia a nave no centro
-	global_position.x = 80
-	global_position.y = 267
+	global_position.x = 960
+	global_position.y = 960
 	
 func _process(delta):
 	#Mantém a nave dentro do limite
@@ -48,3 +49,5 @@ func _on_Area2D_area_entered(area):
 	emit_signal("destruido",self)
 	if lifes == 0:
 		queue_free()
+		FadeTransitions.fade_in("res://Jogo1/Cenas/FimdeJogo1.tscn")
+		
