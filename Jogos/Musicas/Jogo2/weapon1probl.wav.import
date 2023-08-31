@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/weapon1probl.wav-522f76030dab9f2d1a922d66e2aeaaab.sample"
+
+[deps]
+
+source_file="res://Musicas/Jogo2/weapon1probl.wav"
+dest_files=[ "res://.import/weapon1probl.wav-522f76030dab9f2d1a922d66e2aeaaab.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

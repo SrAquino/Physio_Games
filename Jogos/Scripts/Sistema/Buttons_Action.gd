@@ -71,6 +71,8 @@ func _on_Ini_Jogo_pressed():
 		pass
 	elif selected_index == 1:
 		FadeTransitions.fade_in("res://Cenas/Jogo1.tscn")
+	elif selected_index == 2:
+		FadeTransitions.fade_in("res://Cenas/jogo2.tscn")
 	
 func createTextFile(filePath: String, content: String):
 	var file = File.new()
