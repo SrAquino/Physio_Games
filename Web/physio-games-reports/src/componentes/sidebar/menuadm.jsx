@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSignOutAlt, FaUsers, FaUserPlus, FaUserTimes, FaUserEdit } from 'react-icons/fa'
+import { AuthContext } from '../../backend/auth'; 
 
 import './menu.scss'
 
 function MenuAdm() {
+
+  const {logoutUser} = useContext(AuthContext)
+
+  const handleLogOut = () => {
+    logoutUser();
+  }
   return (
     <div>
       <input id="hamburger" className="hamburger" type="checkbox" />
@@ -42,7 +49,7 @@ function MenuAdm() {
             </Link>
           </li>
           <li>
-            <Link to="/">
+            <Link to="/" onClick={handleLogOut}>
               <FaSignOutAlt className="icon" />
               Sair
             </Link>

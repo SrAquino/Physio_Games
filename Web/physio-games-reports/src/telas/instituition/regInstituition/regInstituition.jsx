@@ -14,21 +14,18 @@ export default function RegInstituition() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
-    const [logado, setLogado] = useState('');
+    //const [logado, setLogado] = useState('');
     const [err, setErr] = useState('');
-
-
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            setLogado(await createUser(email, senha));
+            console.log((await createUser(email, senha, user)).displayName);
             navigate('/adicionar-fisio');
 
         } catch (e) {
             console.error(e);
-            setErr(e.message)
+            setErr(e.code)
         }
     };
 

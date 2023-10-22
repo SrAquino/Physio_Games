@@ -1,5 +1,7 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
+import { AuthProvider, AuthContext } from '../backend/auth';
 
 //Instituição
 import LoginPage from '../telas/instituition/login/login'
@@ -18,28 +20,42 @@ import RegInstituition from '../telas/instituition/regInstituition/regInstituiti
 
 export default function AppRoutes() {
 
-  return (
-    <BrowserRouter>
+  const Private = ({children}) => {
+    const { authenticated, loading } = useContext(AuthContext);
+      
+      if(loading){
+        return <div className='loading'>Carregando...</div>
+      }
+      
+      if(!authenticated){
+        return <Navigate to='/'/>
+      }
+      return children;
+    }
 
+
+return (
+  <BrowserRouter>
+    <AuthProvider>
       <Routes>
-        
+
         <Route path="/" element={< LoginPage />} />
         <Route path='/login-fisio' element={< LoginFisio />} />
-        
-        <Route path='/adicionar-paciente' element={< AddPaciente />} />
-        <Route path='/info-paciente' element={< InfoPaciente />} />
-        <Route path='/list-pacientes' element={< ListPacientes />} />
-        <Route path='/remover-paciente' element={< RmPaciente />} />
+
+        <Route path='/adicionar-paciente' element={<Private>< AddPaciente /></Private>} />
+        <Route path='/info-paciente' element={<Private>< InfoPaciente /></Private>} />
+        <Route path='/list-pacientes' element={<Private>< ListPacientes /></Private>} />
+        <Route path='/remover-paciente' element={<Private>< RmPaciente /></Private>} />
 
         <Route path='/registrar-instituition' element={< RegInstituition />} />
 
-        <Route path='/adicionar-fisio' element={< AddFisio />} />
-        <Route path='/atualizar-fisio' element={< AttFisio />} />
-        <Route path='/remover-fisio' element={< RmFisio />} />
-        <Route path='/list-fisio' element={< ListFisios />} />
+        <Route path='/adicionar-fisio' element={<Private>< AddFisio /></Private>} />
+        <Route path='/atualizar-fisio' element={<Private>< AttFisio /></Private>} />
+        <Route path='/remover-fisio' element={<Private>< RmFisio /></Private>} />
+        <Route path='/list-fisio' element={<Private>< ListFisios /></Private>} />
 
 
-        
+
 
 
 
@@ -47,7 +63,7 @@ export default function AppRoutes() {
 
 
       </Routes>
-
-    </BrowserRouter>
-  )
+    </AuthProvider>
+  </BrowserRouter>
+)
 }
