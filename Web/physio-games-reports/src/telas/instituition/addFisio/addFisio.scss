@@ -1,0 +1,16 @@
+.add-fisio-area {
+    position: relative;
+    left: 100px;
+
+    .add-fisio {
+        margin-top: 100px;
+        display: flex;
+
+    }
+
+    .senha {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 50px;
+    }
+}

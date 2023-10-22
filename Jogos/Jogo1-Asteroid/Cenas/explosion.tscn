@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/Jogo1-Asteroid/Explosion.gd" type="Script" id=1]
+[ext_resource path="res://Jogo1-Asteroid/Scripts/Explosion.gd" type="Script" id=1]
 
 [sub_resource type="CanvasItemMaterial" id=2]
 blend_mode = 1

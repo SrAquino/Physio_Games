@@ -8,7 +8,7 @@ var delay : float = 0
 var side = 0
 #var multiplayer_running = false
 var custom_pos = Vector3(0, -1, 0)
-export(float) var acum_speed = 2
+export(float) var acum_speed = 2.0
 signal score
 
 func _ready():
@@ -78,7 +78,7 @@ func _predict() -> Vector3:
 	if linear_velocity.z > 0:
 		var p1 : Vector3 = translation
 		var p2 : Vector3
-		var p : Vector3 = p1
+		var _p : Vector3 = p1
 		var time = (40 - (20 + p1.z)) / linear_velocity.z
 		p2 = translation + Vector3(time * linear_velocity.x, 0, time * linear_velocity.z)
 		if abs(p2.x) > 18:

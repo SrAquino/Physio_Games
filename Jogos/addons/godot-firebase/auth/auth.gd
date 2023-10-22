@@ -283,7 +283,7 @@ func get_auth_with_redirect(provider: AuthProvider) -> void:
 # @provider_id and @request_uri can be changed
 func login_with_oauth(_token: String, provider: AuthProvider) -> void:
 	var token: String = _token.percent_decode()
-	print(token)
+	#print(token)
 	var is_successful: bool = true
 	if provider.should_exchange:
 		exchange_token(token, _local_uri, provider.access_token_uri, provider.get_client_id(), provider.get_client_secret())

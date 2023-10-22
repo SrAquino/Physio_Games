@@ -1,13 +1,19 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('./assets/estilos/colors.scss');
+@import url('./assets/estilos/fonts.scss');
+@import url('./assets/estilos/buttons.scss');
+@import url('./assets/estilos/label.scss');
+@import url('./assets/estilos/inputs.scss');
+
+
+* {
+  box-sizing: border-box
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  padding: 0;
+  overflow: scroll;
+  background-color: var(--global-branco);
+  
+  
 }

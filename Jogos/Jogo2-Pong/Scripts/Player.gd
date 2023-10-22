@@ -37,7 +37,7 @@ func _physics_process(delta):
 			else:
 				move_vec = Vector3(0, 0, 0)
 			if abs(move_vec.x) > 0:
-				move_and_collide(move_vec * speed * delta)
+				var _x = move_and_collide(move_vec * speed * delta)
 		elif not multiplayer_running or is_network_master():
 			if Input.is_action_pressed("ui_left"):
 				move_vec = Vector3(side, 0, 0)
@@ -49,7 +49,7 @@ func _physics_process(delta):
 				get_tree().quit()
 			if multiplayer_running and is_network_master():
 				rpc("update_button", move_vec)
-		move_and_collide(move_vec * speed * delta)
+		var _x = move_and_collide(move_vec * speed * delta)
 		#if Networking._is_server():
 			#rpc_unreliable("pos_update", translation)
 	pass
@@ -76,7 +76,7 @@ func reset():
 
 #A partir daqui todos os métodos abaixos são usados para aplicar os efeitos dos "power ups"
 
-func change_speed(value, relative):
+func change_speed(_value, relative):
 	if relative:
 		speed += 3
 	else:

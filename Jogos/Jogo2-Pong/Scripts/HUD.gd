@@ -50,14 +50,14 @@ func _ready():
 #	else:
 		
 	players[0].get_node("Camera").current = true
-	ball.connect("score", self, "player_scored")
+	var _x=ball.connect("score", self, "player_scored")
 	player_scored(-1)
 	itens.clear()
 	pass
 
-func _process(delta):
+func _process(_delta):
 	randomize()	
-	#call_power(delta)
+	#call_power(_delta)
 
 #Geração dos power ups e resetamento do timer
 func call_power(delta):

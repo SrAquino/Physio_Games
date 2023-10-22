@@ -1,0 +1,11 @@
+.add-patient-area {
+    position: relative;
+    left: 100px;
+    max-width: 90vw;
+
+    .add-patiente {
+        margin-top: 100px;
+        display: flex;
+        justify-content: center;
+    }
+}

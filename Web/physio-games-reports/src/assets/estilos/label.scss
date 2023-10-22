@@ -1,0 +1,21 @@
+label.tag {
+    height: 70px;
+    min-width: 185px;
+}
+
+label.tag_longa {
+    height: 70px;
+    min-width: 370px;
+}
+
+label.tag, 
+label.tag_longa {
+    background-color: var(--global-azul-escuro);
+    color: var(--global-branco);
+    border-radius: 20px;
+    font-family: 'Oswald';
+    font-weight: 300;
+    font-size: 2em;
+    text-align: center;
+    padding: 0.2em;
+}

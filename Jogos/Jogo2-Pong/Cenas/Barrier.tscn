@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/Jogo2-Pong/Itens/Barrier.gd" type="Script" id=1]
+[ext_resource path="res://Jogo2-Pong/Scripts/Itens/Barrier.gd" type="Script" id=1]
 
 [sub_resource type="CapsuleMesh" id=1]
 radius = 0.3

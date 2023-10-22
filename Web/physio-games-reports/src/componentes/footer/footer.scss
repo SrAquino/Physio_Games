@@ -1,0 +1,23 @@
+
+#root #footer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    
+    background-color: var(--global-verde);
+    
+    align-items: center;
+    justify-content: space-around;
+    
+    height: 120px;
+    width: 100%;
+    
+    img {
+        width: 200px;
+        
+    }
+
+    h1 {
+        font-family:'Montserrat';
+    }
+}

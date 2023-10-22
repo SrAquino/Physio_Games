@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Fontes/Arial/arialbd.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Fontes/Arial/arial.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Scripts/Jogo1-Asteroid/FimdeJogo1.gd" type="Script" id=3]
+[ext_resource path="res://Jogo1-Asteroid/Scripts/FimdeJogo1.gd" type="Script" id=3]
 [ext_resource path="res://Fontes/Fontes_Formatadas/Botoes.tres" type="DynamicFont" id=4]
 
 [sub_resource type="DynamicFont" id=1]

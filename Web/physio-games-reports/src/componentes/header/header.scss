@@ -1,0 +1,28 @@
+
+
+#root #header {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    
+    background-color: var(--global-azul);
+    color: var(--global-branco);
+    
+    align-items: center;
+    justify-content: center;
+    
+    height: 75px;
+    width: 100%;
+
+    margin-bottom: 25px;
+    
+    img {
+        width: 75px;
+        max-width: 100px;
+    }
+
+    h1 {
+        font-family:'Montserrat';
+    }
+}
+

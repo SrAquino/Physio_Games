@@ -30,23 +30,24 @@ func _on_Registrar_F_pressed():
 
 func _on_FirebaseAuth_signup_succeeded(auth_info):
 	var emailF = $Background/Email.text
+	print("error code: " + str(auth_info))
 	createTextFile("res://ArquivosDoSistema/Fisioterapeutas.txt",emailF)
 	FadeTransitions.fade_in("res://Cenas/LoginseRegistros/LoginPaciente.tscn")
 	
 func on_signup_failed(error_code, message):
-	#print("error code: " + str(error_code))
+	print("error code: " + str(error_code))
 	$Background/messageError.text = message
 	
 func _on_Entrar_F_pressed():
 	Firebase.Auth.login_with_email_and_password($Background/DropdownFisios.text,$Background/Senha.text)
 
-func login_succeeded(auth_info: Dictionary):
+func login_succeeded(_auth_info: Dictionary):
 	FadeTransitions.fade_in("res://Cenas/LoginseRegistros/LoginPaciente.tscn")
-	#print("LOGIN SUCESSO!!!!!!!!!!!!!!!!!!!!!!!!!")
+	#print("LOGIN SUCESSO: ")
 
 func login_failed(code, message: String):
 	$Background/messageError.text = message
-	#print("Erro: " + str(code))
+	print("Erro: " + str(code))
 #-------------------------------------
 
 #Cena Login/Registro de Paciente

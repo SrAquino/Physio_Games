@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Jogo1-Asteroid/sprites/backgroundSpace.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Jogo1-Asteroid/Init.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Jogo1-Asteroid/HUD.gd" type="Script" id=3]
+[ext_resource path="res://Jogo1-Asteroid/Scripts/Init.gd" type="Script" id=2]
+[ext_resource path="res://Jogo1-Asteroid/Scripts/HUD.gd" type="Script" id=3]
 [ext_resource path="res://Jogo1-Asteroid/sprites/player1.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFontData" id=1]

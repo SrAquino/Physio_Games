@@ -49,11 +49,13 @@ void BluetoothTaskCallback() {
     if(mpu6050.getAngleZ() > 0){
         
       if(mpu6050.getAngleX() < 0) {
-        bleKeyboard.write(KEY_LEFT_ARROW);
+        bleKeyboard.release(KEY_RIGHT_ARROW);
+        bleKeyboard.press(KEY_LEFT_ARROW);
         Serial.println("Esquerda");
       } 
       else {
-        bleKeyboard.write(KEY_RIGHT_ARROW);
+        bleKeyboard.release(KEY_LEFT_ARROW);
+        bleKeyboard.press(KEY_RIGHT_ARROW);
         Serial.println("Direita");
       } 
     } else {

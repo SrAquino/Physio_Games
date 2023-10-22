@@ -1,0 +1,61 @@
+.form-item {
+
+    position: relative;
+    margin: 10px;
+
+    .input {
+        display: block;
+        background: var(--global-azul);
+
+        width: 370px;
+        height: 70px;
+        padding-left: 30px;
+
+        border: 0;
+        border-radius: 20px;
+
+        font-size: 1.2em;
+        color: var(--global-branco);
+        font-family: 'Montserrat';
+        font-weight: 600;
+
+
+        transition: all 0.3s;
+        border-bottom: none;
+
+        &:focus {
+            border: 2px solid #333333;
+        }
+
+        &:valid {
+            border-bottom: 2px solid var(--global-verde);
+        }
+    }
+
+    .label {
+        position: absolute;
+        top: .5em;
+        left: 1em;
+        transition: all 0.2s;
+        font-size: 2em;
+        font-family: 'Montserrat';
+        font-weight: 600;
+        color: var(--global-branco);
+        pointer-events: none;
+    }
+
+
+    .input:valid+.label,
+    .input:focus+.label {
+        top: 0;
+        left: 2em;
+        font-size: 0.9em;
+        color: var(--global-preto);
+
+    }
+
+
+
+
+
+}

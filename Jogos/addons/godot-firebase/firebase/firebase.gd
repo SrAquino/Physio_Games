@@ -73,12 +73,12 @@ var _config: Dictionary = {
 		"database_connection_closed_issue": false, # fixes https://github.com/firebase/firebase-tools/issues/3329
 	},
 	"auth_providers": {
-		"facebook_id": "",
-		"facebook_secret": "",
-		"github_id": "",
-		"github_secret": "",
-		"twitter_id": "",
-		"twitter_secret": ""
+		#"facebook_id": "",
+		#"facebook_secret": "",
+		#"github_id": "",
+		#"github_secret": "",
+		#"twitter_id": "",
+		#"twitter_secret": ""
 	}
 }
 

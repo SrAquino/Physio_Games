@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scripts/Jogo1-Asteroid/Asteroide.gd" type="Script" id=1]
+[ext_resource path="res://Jogo1-Asteroid/Scripts/Asteroide.gd" type="Script" id=1]
 [ext_resource path="res://Jogo1-Asteroid/sprites/asteroids/asteroid-5.png" type="Texture" id=2]
 [ext_resource path="res://Jogo1-Asteroid/sprites/asteroids/asteroid-2.png" type="Texture" id=3]
 [ext_resource path="res://Jogo1-Asteroid/sprites/asteroids/asteroid-3.png" type="Texture" id=4]

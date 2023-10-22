@@ -1,0 +1,16 @@
+.rm-fisio-area {
+    position: relative;
+    left: 100px;
+
+    label {
+        margin-bottom: 100px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        max-width: 90vw;
+        gap: 90px;
+        
+    }
+}

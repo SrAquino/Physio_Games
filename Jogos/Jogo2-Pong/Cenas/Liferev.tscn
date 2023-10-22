@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scripts/Jogo2-Pong/Itens/Item.gd" type="Script" id=1]
+[ext_resource path="res://Jogo2-Pong/Scripts/Itens/Item.gd" type="Script" id=1]
 [ext_resource path="res://Jogo2-Pong/sprites/itens.png" type="Texture" id=2]
 [ext_resource path="res://Musicas/Jogo2/weaponfire13.wav" type="AudioStream" id=3]
 
