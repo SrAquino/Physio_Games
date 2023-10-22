@@ -1,0 +1,16 @@
+.reg-instituition-area {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 1em;
+
+    width: 90vw;
+    justify-content: center;
+    gap: 20px;
+
+    .senha {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}

@@ -63,7 +63,7 @@ $text: getColor($main);
 
 .primnav {
   position: fixed;
-  top: 70px;
+  top: 0px;
   height: 70px;
   width: 100vw;
   font-size: .7em;
@@ -87,6 +87,7 @@ $text: getColor($main);
 
   >ul {
     height: 100%;
+    margin-top: 60px;
     overflow-y: auto;
     overflow-x: hidden;
   }
@@ -95,20 +96,10 @@ $text: getColor($main);
     font-weight: 400;
     font-size: 2em;
     position: relative;
-    margin-top: 10px ;
+    margin-top: 10px;
 
     &:hover {
       @extend %sidebar-hover;
-    }
-
-    .tag {
-      @include alpha-attribute('background-color', rgba($main, .8), black);
-      color: $text;
-      @include alpha-attribute('color', rgba($text, .9), black);
-      padding: 0 .5em;
-      border-radius: 2em;
-      margin-left: auto;
-      margin-right: .75em;
     }
 
     a {
@@ -116,16 +107,15 @@ $text: getColor($main);
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      margin-left: 7px;
+      //margin-left: 7px;
       white-space: nowrap;
       @include alpha-attribute('color', rgba($text, 0.8), white);
       text-decoration: none;
     }
-
   }
 
   .icon {
-    
+
     flex-shrink: 0;
     padding: 19px;
     margin-right: 5px;
@@ -263,13 +253,13 @@ label.hamburger {
       font-size: 6px;
     }
 
-    p.close {
+    .close {
       color: $text;
       right: 0;
       width: 0;
     }
 
-    p.open {
+    .open {
       color: $hamburger;
       width: 100%;
     }

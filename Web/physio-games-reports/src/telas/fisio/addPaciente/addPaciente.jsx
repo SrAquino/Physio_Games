@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { collection, addDoc } from "firebase/firestore"; 
 
 import Menu from '../../../componentes/sidebar/menuuser'
 import Header from '../../../componentes/header/header'
+import db from '../../../assets/config/firebase'
 
 import './addPaciente.scss'
 
@@ -10,7 +12,17 @@ export default function AddPaciente() {
   const [user, setUser] = useState('');
 
   const handleSubmit = async (event) => {
-    //event.preventDefault();
+    event.preventDefault();
+    try {
+      const docRef = await addDoc(collection(db, "users"), {
+        first: "Ada",
+        last: "Lovelace",
+        born: 1815
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   };
 
   const handleUserChange = (event) => {

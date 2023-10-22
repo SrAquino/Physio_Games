@@ -10,10 +10,10 @@ function Menu() {
       <input id="hamburger" className="hamburger" type="checkbox" />
       <label htmlFor="hamburger" className="hamburger">
         <i></i>
-        <p>
+        <div>
           <p className='close'></p>
           <p className='open'></p>
-        </p>
+        </div>
       </label>
       <nav className="primnav">
         <ul>

@@ -23,7 +23,6 @@ export default function LoginFisio() {
     setInst(event.target.value);
   };
 
-
   const handleUserChange = (event) => {
     if (event.target.value.match(/^[a-zA-Z\s]*$/)) {
       setUser(event.target.value);
@@ -37,6 +36,7 @@ export default function LoginFisio() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     navigate('/list-pacientes');
+    setInstituitions([''])
 
   };
 
@@ -67,7 +67,7 @@ export default function LoginFisio() {
                 value={inst}
                 onChange={handleChangeInst}
                 label="Age"
-                required="true"
+                required={true}
               >
                 {instituitions.map((inst) => (
                   <MenuItem key={inst} value={inst}>

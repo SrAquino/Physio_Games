@@ -12,6 +12,10 @@ import './listPacientes.scss'
 export default function ListPacientes() {
   const [pacientes, setPacientes] = useState(['1', '2', '3', '4', '5']);
 
+  const seter = () => {
+    setPacientes([]);
+  }
+
   return (
     <>
       <Header />
@@ -22,10 +26,10 @@ export default function ListPacientes() {
 
         <div className="pacientes">
           {pacientes.map((paciente) => (
-            <div className="card">
+            <div className="card" key={paciente}>
               <FaUserCircle />
               <Link to="/info-paciente">
-                <button className='tag' key={paciente} value={paciente}>
+                <button onSubmit={seter} className='tag'  value={paciente}>
 
                   {paciente}
 

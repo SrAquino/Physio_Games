@@ -5,11 +5,15 @@ import { FaUserCircle } from 'react-icons/fa'
 import Buscar from '../../../componentes/buscar/buscar'
 import MenuAdm from '../../../componentes/sidebar/menuadm'
 import Header from '../../../componentes/header/header'
+
 import './listFisios.scss'
 
 export default function ListFisios() {
-  const [fisios, setFisios] = useState(['1', '2', '3']);
+  const [fisios, setFisios] = useState([{id:1,nome:'Douglas'},{id:2,nome:'Julio'}]);
 
+  const seter = () => {
+    setFisios()
+  }
   return (
     <>
       <Header />
@@ -23,10 +27,10 @@ export default function ListFisios() {
 
         <div className="fisios">
           {fisios.map((fisio) => (
-            <div className="card">
+            <div className="card" key={fisio.id}>
               <FaUserCircle />
-              <button className='tag' key={fisio} value={fisio}>
-                {fisio}
+              <button onSubmit={seter} className='tag'  value={fisio}>
+                {fisio.nome}
               </button>
             </div>
 
@@ -34,7 +38,6 @@ export default function ListFisios() {
 
         </div>
       </div>
-
 
     </>
   )

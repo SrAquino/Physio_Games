@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 import Header from '../../../componentes/header/header'
 import '../../../componentes/divs/divs.scss'
@@ -62,7 +63,9 @@ export default function Login() {
             <button type='submit'>É um fisioterapeuta?</button>
           </form>
           <p><button id='forget-pass'>Esqueceu a senha?</button></p>
-          <button>Registrar</button>
+          <Link to="/registrar-instituition">
+            <button>Registrar</button>
+          </Link>
         </div>
       </div>
       <Footer />

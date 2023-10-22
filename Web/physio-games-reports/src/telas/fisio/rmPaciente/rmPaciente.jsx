@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import Menu from '../../../componentes/sidebar/menuuser'
 import Header from '../../../componentes/header/header'
@@ -8,6 +8,8 @@ import './rmPaciente.scss'
 
 
 export default function RmPaciente() {
+  
+  /*
   const [user, setUser] = useState('');
 
   const handleSubmit = async (event) => {
@@ -19,6 +21,7 @@ export default function RmPaciente() {
       setUser(event.target.value);
     }
   };
+  */
 
   return (
     <>
@@ -29,7 +32,7 @@ export default function RmPaciente() {
         <label className='tag_longa'>Remover paciente</label>
 
         <Buscar />
-        <label className='tag_longa'>{user}</label>
+        <label className='tag_longa'>{'user'}</label>
         <button>Remover</button>
 
       </div>

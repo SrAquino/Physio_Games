@@ -14,6 +14,7 @@ import AddFisio from '../telas/instituition/addFisio/addFisio';
 import AttFisio from '../telas/instituition/attFisio/attFisio';
 import RmFisio from '../telas/instituition/rmFisio/rmFisio';
 import ListFisios from '../telas/instituition/listFisios/listFisios';
+import RegInstituition from '../telas/instituition/regInstituition/regInstituition';
 
 export default function AppRoutes() {
 
@@ -29,6 +30,8 @@ export default function AppRoutes() {
         <Route path='/info-paciente' element={< InfoPaciente />} />
         <Route path='/list-pacientes' element={< ListPacientes />} />
         <Route path='/remover-paciente' element={< RmPaciente />} />
+
+        <Route path='/registrar-instituition' element={< RegInstituition />} />
 
         <Route path='/adicionar-fisio' element={< AddFisio />} />
         <Route path='/atualizar-fisio' element={< AttFisio />} />

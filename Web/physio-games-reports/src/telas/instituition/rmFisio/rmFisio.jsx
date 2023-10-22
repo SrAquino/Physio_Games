@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import MenuAdm from '../../../componentes/sidebar/menuadm'
 import Header from '../../../componentes/header/header'
@@ -8,8 +8,9 @@ import './rmFisio.scss'
 
 
 export default function RmFisio() {
+  /*
   const [user, setUser] = useState('');
-
+  
   const handleSubmit = async (event) => {
     //event.preventDefault();
   };
@@ -19,7 +20,7 @@ export default function RmFisio() {
       setUser(event.target.value);
     }
   };
-
+*/
   return (
     <>
       <Header />
@@ -31,7 +32,7 @@ export default function RmFisio() {
         <Buscar />
         <form>
 
-          <label className='tag_longa'>{user}</label>
+          <label className='tag_longa'>{'user'}</label>
           <button>Remover</button>
 
         </form>
