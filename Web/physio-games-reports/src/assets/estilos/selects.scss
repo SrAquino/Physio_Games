@@ -1,0 +1,24 @@
+select {
+    height: 70px;
+    width: 370px;
+    background-color: var(--global-verde);
+    color: var(--global-branco);
+    font-size: 2em;
+    border-radius: 20px;
+    border: none;
+    margin: 10px;
+    text-align: center;
+    cursor: pointer; /* Adiciona uma seta do cursor quando estiver sobre o select */
+
+    /* Estilo para o hover */
+    &:hover {
+        background-color: var(--global-azul);
+    }
+}
+
+/* Estilo para as opções do select */
+select option {
+    background-color: var(--global-cinza);
+    color: var(--global-branco);
+    font-size: 1em;
+}

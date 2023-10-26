@@ -11,6 +11,12 @@
         flex-direction: column;
         max-width: 90vw;
         gap: 90px;
+        margin: 25px;
         
+        .select {
+            justify-content: space-around;
+            display: flex;
+            flex-direction: row;
+        }
     }
 }

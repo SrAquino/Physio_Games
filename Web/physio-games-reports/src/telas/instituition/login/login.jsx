@@ -6,21 +6,21 @@ import Header from '../../../componentes/header/header'
 import '../../../componentes/divs/divs.scss'
 import Footer from '../../../componentes/footer/footer';
 import './login.scss'
-import { AuthContext } from '../../../backend/auth';
+import { AuthContext } from '../../../context/auth';
 
 export default function Login() {
   const navigate = useNavigate();
 
-  const {loginUser} = useContext(AuthContext)
+  const { loginUser } = useContext(AuthContext);
 
   const [user, setUser] = useState('');
-  const [password, setPassword] = useState('')
+  const [password, setPassword] = useState('');
   const [err, setErr] = useState('');
 
 
   const handleUserChange = (event) => {
     //if (event.target.value.match(/^[a-zA-Z\s]*$/)) {
-      setUser(event.target.value);
+    setUser(event.target.value);
     //}
   };
 
@@ -31,10 +31,10 @@ export default function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await loginUser(user,password);
+      await loginUser(user, password);
       navigate('/list-fisio');
     } catch (e) {
-      setErr(e.code)
+      setErr(e.code);
     }
   };
 
@@ -52,8 +52,6 @@ export default function Login() {
           <label className='tag_longa'>Login de Instituição</label>
         </div>
 
-
-
         <div className="login">
           <form className="form" onSubmit={handleSubmit}>
             <div className="form-item">
@@ -66,8 +64,8 @@ export default function Login() {
               <label className="label" htmlFor='senha'>Senha</label>
             </div>
 
-            <button>Entrar</button>
-            <pre style={{color:"red", fontSize:"2em"}}>{err}</pre>
+            <button type='submit'>Entrar</button>
+            <pre style={{ color: "red", fontSize: "2em" }}>{err}</pre>
           </form>
           <form onSubmit={loginFisio}>
             <button type='submit'>É um fisioterapeuta?</button>

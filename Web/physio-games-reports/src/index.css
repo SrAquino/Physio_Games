@@ -3,6 +3,8 @@
 @import url('./assets/estilos/buttons.scss');
 @import url('./assets/estilos/label.scss');
 @import url('./assets/estilos/inputs.scss');
+@import url('./assets/estilos/selects.scss');
+
 
 
 * {

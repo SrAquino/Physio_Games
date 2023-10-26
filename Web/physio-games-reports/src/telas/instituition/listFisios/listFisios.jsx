@@ -1,19 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaUserCircle } from 'react-icons/fa'
-
+import { collection, getDocs } from "firebase/firestore";
 
 import Buscar from '../../../componentes/buscar/buscar'
 import MenuAdm from '../../../componentes/sidebar/menuadm'
 import Header from '../../../componentes/header/header'
+import db from '../../../assets/config/db.js';
 
 import './listFisios.scss'
 
 export default function ListFisios() {
-  const [fisios, setFisios] = useState([{id:1,nome:'Douglas'},{id:2,nome:'Julio'}]);
+  const [fisios, setFisios] = useState([{ id: 1, nome: 'Douglas' }, { id: 2, nome: 'Julio' }]);
 
-  const seter = () => {
-    setFisios()
-  }
+  useEffect(() => {
+    const carregarFisios = async () => {
+      const recoveredUser = localStorage.getItem('user');
+      const InstituitionEmail = JSON.parse(recoveredUser).email;
+      const querySnapshot = await getDocs(collection(db, 'Instituitions', InstituitionEmail, 'Fisios'));
+
+      const fisiosData = [];
+      querySnapshot.forEach((doc) => {
+        fisiosData.push({ id: doc.id, ...doc.data() });
+      });
+
+      setFisios(fisiosData);
+    };
+
+    carregarFisios();
+    console.log(fisios);
+  // eslint-disable-next-line
+  }, [])
+
   return (
     <>
       <Header />
@@ -29,8 +46,8 @@ export default function ListFisios() {
           {fisios.map((fisio) => (
             <div className="card" key={fisio.id}>
               <FaUserCircle />
-              <button onSubmit={seter} className='tag'  value={fisio}>
-                {fisio.nome}
+              <button className='tag' value={fisio}>
+                {fisio.name}
               </button>
             </div>
 

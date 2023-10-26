@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSignOutAlt, FaUsers, FaUserPlus, FaUserTimes, FaUserEdit } from 'react-icons/fa'
-import { AuthContext } from '../../backend/auth'; 
+import { AuthContext } from '../../context/auth'; 
 
 import './menu.scss'
 

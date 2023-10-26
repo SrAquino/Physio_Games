@@ -1,33 +1,28 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, updateProfile, signOut } from "firebase/auth";
-import app from "../assets/config/firebase";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import app from "../assets/config/firebase.js";
+import { collection, setDoc, doc } from "firebase/firestore";
 import React, { createContext, useState, useEffect } from "react";
+
+import db from "../assets/config/db.js"
 
 export const AuthContext = createContext();
 
 const auth = getAuth(app);
-const user = auth.currentUser;
 
-onAuthStateChanged(auth, () => {
-    if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
-        // const uid = user.uid;
-        // ...
-    } else {
-        // User is signed out
-        // ...
-    }
-});
-
-export const createUser = async (email, senha, displayName) => {
-
+export const createInstituition = async (email, senha, displayName) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
-    await updateProfile(userCredential.user, { displayName });
-    return userCredential.user;
 
+    // Criação do documento da instituição no Firestore
+    const instituitionRef = doc(collection(db, 'Instituitions'), email);
 
+    await setDoc(instituitionRef, {
+        email,
+        displayName,
+        // role: '... se necessário ...',
+    });
+
+    return userCredential.user.uid; // ou outra identificação única
 }
-
 
 
 export const AuthProvider = ({ children }) => {
@@ -42,8 +37,9 @@ export const AuthProvider = ({ children }) => {
         return await signInWithEmailAndPassword(auth, email, senha)
             .then((userCredential) => {
                 // Signed in 
-                const user = userCredential.user;
-                localStorage.setItem("user", JSON.stringify(user));
+                const loged = userCredential.user;
+                localStorage.setItem("user", JSON.stringify(loged));
+                setUser(loged);
                 // ...
                 return user
             })

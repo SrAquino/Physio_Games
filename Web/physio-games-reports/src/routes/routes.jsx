@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import { AuthProvider, AuthContext } from '../backend/auth';
+import { AuthProvider, AuthContext } from '../context/auth';
 
 //Instituição
 import LoginPage from '../telas/instituition/login/login'

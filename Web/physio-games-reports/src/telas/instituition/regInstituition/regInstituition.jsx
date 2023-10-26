@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 import Header from '../../../componentes/header/header'
-import { createUser } from '../../../backend/auth';
+import { createInstituition } from '../../../context/auth';
 
 import './regInstituition.scss'
 
@@ -20,9 +20,9 @@ export default function RegInstituition() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            console.log((await createUser(email, senha, user)).displayName);
-            navigate('/adicionar-fisio');
-
+            const instituitionId = await createInstituition(email, senha, user);
+            console.log(`Instituição criada com ID: ${instituitionId}`);
+            navigate('/');
         } catch (e) {
             console.error(e);
             setErr(e.code)
