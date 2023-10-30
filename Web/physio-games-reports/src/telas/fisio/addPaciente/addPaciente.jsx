@@ -1,25 +1,34 @@
 import React, { useState } from 'react'
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc, doc } from "firebase/firestore";
 
 import Menu from '../../../componentes/sidebar/menuuser'
 import Header from '../../../componentes/header/header'
-import db from '../../../assets/config/firebase'
+import db from '../../../assets/config/db'
 
 import './addPaciente.scss'
+import { useNavigate } from 'react-router-dom';
 
 
 export default function AddPaciente() {
+  const navigate = useNavigate();
   const [user, setUser] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const docRef = await addDoc(collection(db, "users"), {
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815
+      const instituitionEmail = String(localStorage.getItem('inst')).replace(/['"]+/g, '');
+      console.log(instituitionEmail);
+      const instDocRef = doc(db, 'Instituitions', instituitionEmail);
+      const pacientesCollectionRef = collection(instDocRef, 'Pacientes');
+
+      const docRef = await addDoc(pacientesCollectionRef, {
+        name: user,
       });
-      console.log("Document written with ID: ", docRef.id);
+
+      console.log("Documento adicionado com ID: ", docRef.id);
+      navigate("/list-pacientes")
+
+
     } catch (e) {
       console.error("Error adding document: ", e);
     }

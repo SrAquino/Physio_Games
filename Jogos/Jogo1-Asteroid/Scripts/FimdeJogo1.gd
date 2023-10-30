@@ -9,12 +9,18 @@ func _ready():
 	
 func atualizaBD():
 	var nomeP = Global.get_paciente_nome()
+	var inst = Global.get_instituition()
+	
 	var dados = {
 		'Data' :Time.get_datetime_dict_from_system(false),
 		'Score':Global.get_score()
 	}
 	
-	var fire_colection : FirestoreCollection = Firebase.Firestore.collection("Pacientes/"+nomeP+"/Partida")
+	 # Obter uma referência para a coleção de pacientes
+	var pacientes_collection: FirestoreCollection = Firebase.Firestore.collection("Instituitions/"+inst+"/Pacientes")
+	pacientes_collection.add(nomeP,{'name':nomeP})
+	
+	var fire_colection : FirestoreCollection = Firebase.Firestore.collection("Instituitions/"+inst+"/Pacientes/"+nomeP+"/Partida")
 	fire_colection.add(Time.get_datetime_string_from_system(),dados)
 
 

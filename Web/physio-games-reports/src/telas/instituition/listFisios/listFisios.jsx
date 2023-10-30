@@ -10,7 +10,7 @@ import db from '../../../assets/config/db.js';
 import './listFisios.scss'
 
 export default function ListFisios() {
-  const [fisios, setFisios] = useState([{ id: 1, nome: 'Douglas' }, { id: 2, nome: 'Julio' }]);
+  const [fisios, setFisios] = useState([{}]);
 
   useEffect(() => {
     const carregarFisios = async () => {
@@ -27,7 +27,6 @@ export default function ListFisios() {
     };
 
     carregarFisios();
-    console.log(fisios);
   // eslint-disable-next-line
   }, [])
 
@@ -44,7 +43,7 @@ export default function ListFisios() {
 
         <div className="fisios">
           {fisios.map((fisio) => (
-            <div className="card" key={fisio.id}>
+            <div className="card" key={fisio._id}>
               <FaUserCircle />
               <button className='tag' value={fisio}>
                 {fisio.name}

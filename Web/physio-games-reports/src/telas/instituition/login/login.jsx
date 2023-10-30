@@ -11,7 +11,7 @@ import { AuthContext } from '../../../context/auth';
 export default function Login() {
   const navigate = useNavigate();
 
-  const { loginUser } = useContext(AuthContext);
+  const { loginInst } = useContext(AuthContext);
 
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
@@ -19,9 +19,7 @@ export default function Login() {
 
 
   const handleUserChange = (event) => {
-    //if (event.target.value.match(/^[a-zA-Z\s]*$/)) {
     setUser(event.target.value);
-    //}
   };
 
   const handlePasswordChange = (event) => {
@@ -31,7 +29,7 @@ export default function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await loginUser(user, password);
+      await loginInst(user, password);
       navigate('/list-fisio');
     } catch (e) {
       setErr(e.code);

@@ -52,9 +52,9 @@ valign = 1
 
 [node name="DropdownFisios" type="OptionButton" parent="Background"]
 margin_left = 480.0
-margin_top = 315.0
+margin_top = 383.0
 margin_right = 1440.0
-margin_bottom = 450.0
+margin_bottom = 518.0
 custom_fonts/font = ExtResource( 1 )
 text = "Selecione seu e-mail"
 script = ExtResource( 3 )
@@ -77,9 +77,9 @@ text = "Entrar"
 
 [node name="Senha" type="LineEdit" parent="Background"]
 margin_left = 486.0
-margin_top = 585.0
+margin_top = 653.0
 margin_right = 1446.0
-margin_bottom = 720.0
+margin_bottom = 788.0
 custom_fonts/font = ExtResource( 1 )
 secret = true
 
@@ -100,9 +100,9 @@ custom_fonts/font = SubResource( 6 )
 
 [node name="esqueciSenha" type="Button" parent="Background"]
 margin_left = 1481.0
-margin_top = 627.0
+margin_top = 695.0
 margin_right = 1799.0
-margin_bottom = 677.0
+margin_bottom = 745.0
 custom_fonts/font = ExtResource( 7 )
 text = "Esqueci minha senha"
 

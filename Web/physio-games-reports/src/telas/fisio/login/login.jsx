@@ -1,21 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
-
 
 import Header from '../../../componentes/header/header';
 import Footer from '../../../componentes/footer/footer';
 import './login.scss';
 import db from '../../../assets/config/db';
+import { AuthContext } from '../../../context/auth';
+
 
 export default function LoginFisio() {
   const navigate = useNavigate();
+  const { loginUser } = useContext(AuthContext);
+
 
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
-  const [instituitions, setInstituitions] = useState(['SRF-Bagé', 'SRF-D']);
-  const [inst, setInst] = useState('');
-  const [error, setError] = useState('');
+  const [instituitions, setInstituitions] = useState([]);
+  const [selInst, setInst] = useState('');
+  const [err, setErr] = useState('');
+
 
   useEffect(() => {
     const fetchInstituitions = async () => {
@@ -24,14 +28,15 @@ export default function LoginFisio() {
 
       const instituitionsData = [];
       instituitionsSnapshot.forEach((doc) => {
-        instituitionsData.push(doc.id);
+        instituitionsData.push(doc.data());
       });
 
       setInstituitions(instituitionsData);
+      
     };
 
     fetchInstituitions();
-  }, []); // Executa apenas uma vez durante a montagem do componente
+  }, []);
 
 
   const handleChangeInst = (event) => {
@@ -39,9 +44,7 @@ export default function LoginFisio() {
   };
 
   const handleUserChange = (event) => {
-    if (event.target.value.match(/^[a-zA-Z\s]*$/)) {
-      setUser(event.target.value);
-    }
+    setUser(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
@@ -50,23 +53,19 @@ export default function LoginFisio() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
-    // Lógica de autenticação
-    // Verificar as credenciais no Firestore e autenticar fisioterapeuta
-    // Se válido, navegar para a página correta, senão, exibir uma mensagem de erro.
-    
-    if (user && password && inst) {
-      // Exemplo de navegação bem-sucedida
+
+    try {
+      await loginUser(user, password, selInst);
       navigate('/list-pacientes');
-    } else {
-      setError('Credenciais inválidas. Por favor, verifique seus dados.');
+
+    } catch (e) {
+      setErr(e.message);
+
     }
   };
 
   const loginInstituition = (event) => {
     event.preventDefault();
-    // Adicione lógica para lidar com a autenticação de instituições
-    // Isso pode envolver uma rota diferente ou uma lógica específica para instituições
     navigate('/');
   };
 
@@ -84,14 +83,13 @@ export default function LoginFisio() {
             <div className="instituition">
               <label className='tag'>Instituição</label>
               <select
-                value={inst}
                 onChange={handleChangeInst}
                 required={true}
               >
-                <option value="">Selecione...</option>
+                <option>Selecione...</option>
                 {instituitions.map((inst) => (
-                  <option key={inst} value={inst}>
-                    {inst}
+                  <option key={inst.displayName} value={inst.email}>
+                    {inst.displayName}
                   </option>
                 ))}
               </select>
@@ -99,7 +97,7 @@ export default function LoginFisio() {
 
             <div className="form-item">
               <input className="input" type="text" name="nome" required autoComplete='false' value={user} onChange={handleUserChange} />
-              <label className="label" htmlFor="nome">Nome</label>
+              <label className="label" htmlFor="nome">E-mail</label>
             </div>
 
             <div className="form-item">
@@ -107,16 +105,17 @@ export default function LoginFisio() {
               <label className="label" htmlFor="senha">Senha</label>
             </div>
 
-            {error && <p className="error-message">{error}</p>}
-
             <button type='submit'>Entrar</button>
+            <pre style={{ color: "red", fontSize: "2em" }}>{err}</pre>
           </form>
 
           <form onSubmit={loginInstituition}>
             <button type='submit'>É uma instituição?</button>
           </form>
 
-          <p><button id='forget-pass'>Esqueceu a senha?</button></p>
+          <form>
+            <button id='forget-pass'>Esqueceu a senha?</button>
+          </form>
         </div>
       </div>
 

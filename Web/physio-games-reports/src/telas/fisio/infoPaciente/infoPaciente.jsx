@@ -6,26 +6,55 @@ import ReactApexChart from 'react-apexcharts';
 import Menu from '../../../componentes/sidebar/menuuser'
 import Header from '../../../componentes/header/header'
 import './infoPaciente.scss'
+import db from '../../../assets/config/db';
+import { collection, getDocs } from 'firebase/firestore';
+
 
 export default function InfoPaciente() {
-  const [nome, setNome] = useState('Douglas Paciente');
+  const [nome, setNome] = useState('');
   const [jogos, setJogos] = useState(['']);
   const [variaveis, setVariaveis] = useState(['']);
 
   const [jogo, setJogo] = useState('');
   const [variavel, setVariavel] = useState('');
 
-  const [partidas, setPartidas] = useState([]);
+  const [partidas, setPartidas] = useState([{}]);
 
   useEffect(() => {
-    setNome('Outro nome')
+    const fetchPacientes = async () => {
+      try {
+        const paciente = String(localStorage.getItem('paciente')).replace(/['"]+/g, '');
+        setNome(paciente);
+
+        const instituitionEmail = String(localStorage.getItem('inst')).replace(/['"]+/g, '');
+        const instDocRef = collection(db, 'Instituitions', instituitionEmail, 'Pacientes', paciente, "Partida");
+        const pacientesSnapshot = await getDocs(instDocRef);
+
+        const partidasData = [];
+        pacientesSnapshot.forEach((doc) => {
+          //console.log(doc.data())
+          partidasData.push({id: doc.id, score: doc.data().Score, data: doc.data().Data});
+        });
+
+        setPartidas(partidasData);
+        console.log(partidas)
+
+
+      } catch (e) {
+        console.error(e);
+
+      }
+    }
+
+    fetchPacientes();
+
+    
     setJogos(['jogo 1', 'jogo 2', 'jogo 3'])
     setVariaveis(['Pontuação', 'Desempenho', 'Dificuldade'])
-    setPartidas([1,2,3,4,5])
-    return () => {}
+    return () => { }
   }, [])
-  
-  
+
+
 
   const options = {
     xaxis: {
@@ -42,8 +71,8 @@ export default function InfoPaciente() {
     name: 'Teste',
     data: partidas.map((entry) => {
       return {
-        x: entry,
-        y: entry,
+        x: entry.id,
+        y: entry.score,
       };
     })
   }];
@@ -66,40 +95,38 @@ export default function InfoPaciente() {
         <div className="selects">
           <label className='tag_longa'>{nome}</label>
           <form action="">
-            <Select
-              labelId="demo-simple-select-standard-label"
+            <select
               id="demo-simple-select-standard"
               value={jogo}
               onChange={handleChangeJogo}
               label="Age"
             >
               {jogos.map((jogo) => (
-                <MenuItem key={jogo} value={jogo}>
+                <option key={jogo} value={jogo}>
                   {jogo}
-                </MenuItem>
+                </option>
               ))}
-            </Select>
+            </select>
 
-            <Select
-              labelId="demo-simple-select-standard-label"
+            <select
               id="demo-simple-select-standard"
               value={variavel}
               onChange={handleChangeVar}
               label="Age"
-              required="true"
+              required={true}
             >
               {variaveis.map((variavel) => (
-                <MenuItem key={variavel} value={variavel}>
+                <option key={variavel} value={variavel}>
                   {variavel}
-                </MenuItem>
+                </option>
               ))}
-            </Select>
+            </select>
           </form>
         </div>
 
         <div className="info-patiente">
-        <label className='tag_longa'>Grafico de {variavel} x Sessão</label>
-        <ReactApexChart
+          <label className='tag_longa'>Grafico de {variavel} x Sessão</label>
+          <ReactApexChart
             options={options}
             series={series}
             type="area"
