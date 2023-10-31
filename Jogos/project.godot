@@ -203,6 +203,7 @@ config/icon="res://icon.png"
 FadeTransitions="*res://Cenas/Transições/Fade_Transitions.tscn"
 Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
 Global="*res://Scripts/Sistema/Global.gd"
+SimpleConsole="*res://Cenas/SerialControl/SimpleConsole.tscn"
 
 [display]
 

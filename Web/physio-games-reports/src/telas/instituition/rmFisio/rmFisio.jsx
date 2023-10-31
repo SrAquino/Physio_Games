@@ -42,7 +42,7 @@ export default function RmFisio() {
       setFisios((prevFisios) => prevFisios.filter((fisio) => fisio.id !== selectedFisio.id));
       // Limpa a seleção
       setSelectedFisio(null);
-      navigate('/list-pacientes');
+      navigate('/list-fisio');
 
     }
   };

@@ -15,6 +15,7 @@ func _ready():
 
 func _process(delta):
 	$Enemy_cadence.set_wait_time(enemy_cadence)
+
 	
 func _on_Timer_timeout():
 	var asteroid = pre_asteroid.instance()
