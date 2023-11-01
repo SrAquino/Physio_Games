@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Imagens/Physio Games Logo.png" type="Texture" id=1]
+[ext_resource path="res://Imagens/Physio_Games_Logo.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Sistema/Buttons_Action.gd" type="Script" id=2]
 [ext_resource path="res://Fontes/Fontes_Formatadas/Botoes.tres" type="DynamicFont" id=3]
 

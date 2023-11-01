@@ -18,10 +18,10 @@ func atualizaBD():
 	
 	 # Obter uma referência para a coleção de pacientes
 	var pacientes_collection: FirestoreCollection = Firebase.Firestore.collection("Instituitions/"+inst+"/Pacientes")
-	pacientes_collection.add(nomeP,{'name':nomeP})
+	var _x = pacientes_collection.add(nomeP,{'name':nomeP})
 	
 	var fire_colection : FirestoreCollection = Firebase.Firestore.collection("Instituitions/"+inst+"/Pacientes/"+nomeP+"/Partida")
-	fire_colection.add(Time.get_datetime_string_from_system(),dados)
+	_x = fire_colection.add(Time.get_datetime_string_from_system(),dados)
 
 
 func _on_quit_pressed():

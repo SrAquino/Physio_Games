@@ -21,9 +21,9 @@ func _ready():
 #_physics_process may lag with lots of characters, but is the simplest way
 #for best speed, you can use a thread
 #do not use _process due to fps being too high
-func _physics_process(delta): 
+func _physics_process(_delta): 
 	if PORT.get_available()>0:
-		for i in range(PORT.get_available()):
+		for _i in range(PORT.get_available()):
 			$Title.text = PORT.read()
 			#print($dir.text)
 

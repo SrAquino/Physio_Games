@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Physio Games Slogan.png-ce8a1a4830dee9d8844ae942ca3b7335.stex"
+path="res://.import/Physio_Games_Logo.png-5dcbbad350073b63b6c20ffe1ad510a3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Imagens/Physio Games Slogan.png"
-dest_files=[ "res://.import/Physio Games Slogan.png-ce8a1a4830dee9d8844ae942ca3b7335.stex" ]
+source_file="res://Imagens/Physio_Games_Logo.png"
+dest_files=[ "res://.import/Physio_Games_Logo.png-5dcbbad350073b63b6c20ffe1ad510a3.stex" ]
 
 [params]
 

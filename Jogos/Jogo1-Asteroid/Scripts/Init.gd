@@ -13,7 +13,7 @@ func _ready():
 	call_deferred("add_child", player)
 	player.connect("destruido", self, "on_player_destroied")
 
-func _process(delta):
+func _process(_delta):
 	$Enemy_cadence.set_wait_time(enemy_cadence)
 
 	

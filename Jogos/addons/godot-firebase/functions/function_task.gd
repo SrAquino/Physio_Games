@@ -60,13 +60,3 @@ func _on_request_completed(result: int, response_code: int, headers: PoolStringA
         emit_signal("task_error", result, response_code, str(data))
 
     emit_signal("task_finished", data)
-
-
-#func _handle_cache(offline : bool, data, encrypt_key : String, cache_path : String, body) -> Dictionary:
-#    if offline:
-#        Firebase._printerr("Offline queries are currently unsupported!")
-#
-#    if not offline:
-#        return body
-#    else:
-#        return body_return

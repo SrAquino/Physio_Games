@@ -37,6 +37,6 @@ func reposiciona():
 		global_position.x = (randi()%1815)+106
 
 #Identifica colisão
-func _on_Area2D_area_entered(area):
+func _on_Area2D_area_entered(_area):
 	emit_signal("destruido",self)
 	queue_free()

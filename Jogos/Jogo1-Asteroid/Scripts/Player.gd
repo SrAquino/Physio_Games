@@ -64,7 +64,6 @@ func movePlayer_teclado(delta: float):
 	
 func movePlayer_espUSB(delta: float):
 	
-	print(int(SimpleConsole.get_node("Title").text))
 	if int(SimpleConsole.get_node("Title").text) == 1:
 		translate(Vector2(1 * speed * delta, 0))
 		ultimo_movimento = 1 
@@ -79,7 +78,7 @@ func movePlayer_espUSB(delta: float):
 	#translate(Vector2(0,Input.get_axis("ui_up","ui_down") * speed * delta))
 	
 	
-func _on_Area2D_area_entered(area):
+func _on_Area2D_area_entered(_area):
 	emit_signal("destruido",self)
 	if lifes == 0:
 		queue_free()
