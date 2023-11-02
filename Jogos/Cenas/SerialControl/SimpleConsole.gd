@@ -7,16 +7,13 @@ onready var PORT = SERCOMM.new()
 onready var com=$Com 
 #use it as node since script alone won't have the editor help
 
-var port = 'COM3'
-var msg
+var port = 1
 
 func _ready():
 	#adding the baudrates options
 	$OptionButton.add_item("")
 	for index in com.baud_list: #first use of com helper
 		$OptionButton.add_item(str(index))
-		
-	abrir_porta(115200)
 
 #_physics_process may lag with lots of characters, but is the simplest way
 #for best speed, you can use a thread
@@ -25,17 +22,15 @@ func _physics_process(_delta):
 	if PORT.get_available()>0:
 		for _i in range(PORT.get_available()):
 			$Title.text = PORT.read()
-			#print($dir.text)
 
 func _on_SendButton_pressed():
 	send_text()
 
-func abrir_porta(ID):
+func _on_OptionButton_item_selected(ID):
 	set_physics_process(false)
-	#PORT.close()
+	PORT.close()
 	if port!=null and ID!=0:
-		#PORT.open(port,int($OptionButton.get_item_text(ID)),1000)
-		PORT.open("COM3",115200,1000)		
+		PORT.open("/dev/ttyUSB1",115200,1000)
 	else:
 		print("You must select a port first")
 	set_physics_process(true)

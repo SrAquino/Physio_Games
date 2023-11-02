@@ -12,6 +12,7 @@ func _ready():
 	var player = pre_player.instance()
 	call_deferred("add_child", player)
 	player.connect("destruido", self, "on_player_destroied")
+	SimpleConsole._on_OptionButton_item_selected(1)
 
 func _process(_delta):
 	$Enemy_cadence.set_wait_time(enemy_cadence)
