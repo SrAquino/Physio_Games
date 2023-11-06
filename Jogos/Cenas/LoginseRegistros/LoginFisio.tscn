@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Fontes/Fontes_Formatadas/insideDropdownAndLineEdit.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Scripts/Sistema/Buttons_Action.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Sistema/Dropdowns/DropdownFisios.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Sistema/LoginFisio.gd" type="Script" id=2]
 [ext_resource path="res://Fontes/Arial/arialbd.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Fontes/Arial/arial.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Fontes/Arial/ariali.ttf" type="DynamicFontData" id=6]
@@ -13,6 +12,15 @@ size = 80
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 45
+extra_spacing_top = 10
+extra_spacing_bottom = 10
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=8]
+default_font = SubResource( 7 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -55,17 +63,9 @@ margin_left = 480.0
 margin_top = 383.0
 margin_right = 1440.0
 margin_bottom = 518.0
+theme = SubResource( 8 )
 custom_fonts/font = ExtResource( 1 )
 text = "Selecione seu e-mail"
-script = ExtResource( 3 )
-
-[node name="novo_Registro_F" type="Button" parent="Background"]
-margin_left = 480.0
-margin_top = 880.0
-margin_right = 880.0
-margin_bottom = 960.0
-custom_fonts/font = SubResource( 1 )
-text = "Registrar"
 
 [node name="Entrar_F" type="Button" parent="Background"]
 margin_left = 1440.0
@@ -106,6 +106,12 @@ margin_bottom = 745.0
 custom_fonts/font = ExtResource( 7 )
 text = "Esqueci minha senha"
 
-[connection signal="pressed" from="Background/novo_Registro_F" to="." method="_on_novo_Registro_F_pressed"]
+[node name="HTTPRequest_LF" type="HTTPRequest" parent="."]
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="item_selected" from="Background/DropdownFisios" to="." method="_on_DropdownFisios_item_selected"]
 [connection signal="pressed" from="Background/Entrar_F" to="." method="_on_Entrar_F_pressed"]
 [connection signal="pressed" from="Background/esqueciSenha" to="." method="_on_esqueciSenha_pressed"]
+[connection signal="request_completed" from="HTTPRequest_LF" to="." method="_on_HTTPRequest_LF_request_completed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

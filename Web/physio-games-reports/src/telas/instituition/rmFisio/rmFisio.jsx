@@ -7,6 +7,8 @@ import MenuAdm from '../../../componentes/sidebar/menuadm';
 import Header from '../../../componentes/header/header';
 import './rmFisio.scss';
 import db from '../../../assets/config/db';
+import { deleteFisio } from '../../../context/auth.js';
+
 
 export default function RmFisio() {
   const navigate = useNavigate();
@@ -37,7 +39,10 @@ export default function RmFisio() {
 
       const recoveredUser = localStorage.getItem('user');
       const InstituitionEmail = JSON.parse(recoveredUser).email;
+      deleteFisio(selectedFisio)
+
       await deleteDoc(doc(db, 'Instituitions', InstituitionEmail, 'Fisios', selectedFisio.id));
+      
       // Atualiza a lista de fisioterapeutas após a remoção
       setFisios((prevFisios) => prevFisios.filter((fisio) => fisio.id !== selectedFisio.id));
       // Limpa a seleção

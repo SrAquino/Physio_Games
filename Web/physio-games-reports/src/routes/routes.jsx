@@ -7,7 +7,7 @@ import { AuthProvider, AuthContext } from '../context/auth';
 import LoginPage from '../telas/instituition/login/login'
 
 //Fisio
-import AddPaciente from '../telas/fisio/addPaciente/addPaciente';
+//import AddPaciente from '../telas/fisio/addPaciente/addPaciente';
 import InfoPaciente from '../telas/fisio/infoPaciente/infoPaciente';
 import ListPacientes from '../telas/fisio/listPacientes/listPaciente';
 import LoginFisio from '../telas/fisio/login/login';
@@ -17,6 +17,7 @@ import AttFisio from '../telas/instituition/attFisio/attFisio';
 import RmFisio from '../telas/instituition/rmFisio/rmFisio';
 import ListFisios from '../telas/instituition/listFisios/listFisios';
 import RegInstituition from '../telas/instituition/regInstituition/regInstituition';
+import ForgetPass from '../telas/forgetpass/forgetpass';
 
 export default function AppRoutes() {
 
@@ -42,7 +43,9 @@ return (
         <Route path="/" element={< LoginPage />} />
         <Route path='/login-fisio' element={< LoginFisio />} />
 
-        <Route path='/adicionar-paciente' element={<Private>< AddPaciente /></Private>} />
+        <Route path='/esqueci-minha-senha' element={< ForgetPass />} />
+
+        {/*<Route path='/adicionar-paciente' element={<Private>< AddPaciente /></Private>} />*/}
         <Route path='/info-paciente' element={<Private>< InfoPaciente /></Private>} />
         <Route path='/list-pacientes' element={<Private>< ListPacientes /></Private>} />
         <Route path='/remover-paciente' element={<Private>< RmPaciente /></Private>} />

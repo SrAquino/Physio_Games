@@ -31,7 +31,6 @@ export default function AddFisio() {
       await addDoc(fisiosCollectionRef, {
         name: user,
         email: email,
-        senha: password,
       });
 
 

@@ -7,12 +7,14 @@ reloadable=true
 
 [entry]
 
+X11.64="res://bin/linux64/libGDSercomm.so"
 Windows.64="res://bin/win64/GDSercomm.dll"
 Windows.32="res://bin/win32/GDSercomm.dll"
-X11.64="res://bin/linux64/libGDSercomm.so"
+OSX.64=""
 
 [dependencies]
 
-Windows.64=[ "res://bin/win64/sercomm.dll" ]
-Windows.32=[  ]
 X11.64=[ "res://bin/linux64/libsercomm.so" ]
+Windows.64=[ "res://bin/win64/sercomm.dll" ]
+OSX.64=[  ]
+Windows.32=[  ]

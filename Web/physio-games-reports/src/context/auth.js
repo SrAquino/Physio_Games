@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, deleteUser, sendPasswordResetEmail } from "firebase/auth";
 import app from "../assets/config/firebase.js";
 import { collection, setDoc, doc, getDocs, query, where } from "firebase/firestore";
 import React, { createContext, useState, useEffect } from "react";
@@ -28,6 +28,15 @@ export const createUser = async (email, senha) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
     return userCredential.user.uid;
 }
+
+export const deleteFisio = async (userData) => {
+    const authUser = await getAuth().getUserByEmail(userData.email);
+    if (authUser) {
+        await deleteUser(authUser);
+    }
+}
+
+
 
 
 export const AuthProvider = ({ children }) => {
@@ -85,6 +94,10 @@ export const AuthProvider = ({ children }) => {
         console.log('Usuário desconectado com sucesso.');
     }
 
+    const recPass = async (email) => {
+        await sendPasswordResetEmail(auth, email);
+    }
+
     useEffect(() => {
         const recoveredUser = localStorage.getItem('user');
         if (recoveredUser) {
@@ -100,7 +113,8 @@ export const AuthProvider = ({ children }) => {
             loading,
             loginUser,
             logoutUser,
-            loginInst
+            loginInst,
+            recPass
         }}>
             {children}
         </AuthContext.Provider>

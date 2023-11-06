@@ -1,0 +1,46 @@
+.login_area{
+    display: grid;
+    grid-template-rows: auto;
+    gap: 10%;
+
+    justify-content: center;
+
+    margin-top: 70px;
+    margin-bottom: 120px;
+
+    #title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+
+    .login {
+        background-color: var(--global-cinza);
+
+        padding: 20px;
+        border-radius: 20px;
+        display: grid;
+        grid-template-rows: auto;
+        
+        gap: 30px;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #forget-pass {
+            background-color: var(--global-cinza);
+            color: var(--global-preto);
+            font-size: 24px;
+
+            &:hover {
+                background-color: var(--global-azul);
+            }
+            
+        }
+    }
+    
+}

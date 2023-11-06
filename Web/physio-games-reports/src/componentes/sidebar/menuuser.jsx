@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { FaSignOutAlt, FaUsers, FaUserPlus, FaUserTimes } from 'react-icons/fa'
+import { FaSignOutAlt, FaUsers, /*FaUserPlus,*/ FaUserTimes } from 'react-icons/fa'
 
-import { AuthContext } from '../../context/auth'; 
+import { AuthContext } from '../../context/auth';
 
 import './menu.scss'
 
 function Menu() {
-  const {logoutUser} = useContext(AuthContext)
+  const { logoutUser } = useContext(AuthContext)
 
   return (
     <div>
@@ -27,12 +27,12 @@ function Menu() {
               Pacientes
             </Link>
           </li>
-          <li id='add-p'>
+          {/*<li id='add-p'>
             <Link to="/adicionar-paciente">
               <FaUserPlus className="icon" />
               Adicionar <br />paciente
             </Link>
-          </li>
+          </li>*/}
           <li id='rm-p'>
             <Link to="/remover-paciente">
               <FaUserTimes className="icon" />

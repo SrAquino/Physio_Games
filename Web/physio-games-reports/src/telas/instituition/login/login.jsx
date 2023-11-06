@@ -68,7 +68,7 @@ export default function Login() {
           <form onSubmit={loginFisio}>
             <button type='submit'>É um fisioterapeuta?</button>
           </form>
-          <p><button id='forget-pass'>Esqueceu a senha?</button></p>
+          <Link to={"/esqueci-minha-senha"}><button id='forget-pass'>Esqueceu a senha?</button></Link>
           <Link to="/registrar-instituition">
             <button>Registrar</button>
           </Link>

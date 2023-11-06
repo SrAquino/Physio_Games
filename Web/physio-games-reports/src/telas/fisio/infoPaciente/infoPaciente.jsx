@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
 import ReactApexChart from 'react-apexcharts';
 
 import Menu from '../../../componentes/sidebar/menuuser'
@@ -32,13 +30,10 @@ export default function InfoPaciente() {
 
         const partidasData = [];
         pacientesSnapshot.forEach((doc) => {
-          //console.log(doc.data())
           partidasData.push({id: doc.id, score: doc.data().Score, data: doc.data().Data});
         });
 
         setPartidas(partidasData);
-        console.log(partidas)
-
 
       } catch (e) {
         console.error(e);

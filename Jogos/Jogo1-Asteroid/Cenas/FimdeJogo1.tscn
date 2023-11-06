@@ -72,5 +72,8 @@ rect_pivot_offset = Vector2( -2282, -381 )
 custom_fonts/font = ExtResource( 4 )
 text = "Sair"
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="pressed" from="Backgroun/newGame" to="." method="_on_newGame_pressed"]
 [connection signal="pressed" from="Backgroun/quit" to="." method="_on_quit_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

@@ -17,3 +17,4 @@ func _on_DropdownGames_item_selected(index):
 		i.visible = false
 	capas.get_child(index).visible = true
 	jogoSelecionado = index
+	Global.currentJogo = $DropdownGames.text

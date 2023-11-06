@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/Sistema/Buttons_Action.gd" type="Script" id=1]
+[ext_resource path="res://Fontes/Fontes_Formatadas/insideDropdownAndLineEdit.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Fontes/Arial/arial.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Fontes/Arial/ariali.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Fontes/Arial/arialbd.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 35
+font_data = ExtResource( 5 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -651, 76 )
+
+[node name="BarraSuperior" type="ColorRect" parent="Background"]
+anchor_right = 1.0
+margin_bottom = 158.0
+color = Color( 0, 0.2, 0.6, 1 )
+
+[node name="Label" type="Label" parent="Background/BarraSuperior"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+text = "Login Instituição"
+align = 1
+valign = 1
+
+[node name="Email" type="LineEdit" parent="Background"]
+margin_left = 484.0
+margin_top = 365.0
+margin_right = 1444.0
+margin_bottom = 500.0
+custom_fonts/font = ExtResource( 3 )
+
+[node name="email" type="Label" parent="Background/Email"]
+margin_top = -60.0
+margin_right = 120.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "E-mail"
+
+[node name="Entrar_I" type="Button" parent="Background"]
+margin_left = 1440.0
+margin_top = 880.0
+margin_right = 1840.0
+margin_bottom = 960.0
+custom_fonts/font = SubResource( 3 )
+text = "Entrar"
+
+[node name="Senha" type="LineEdit" parent="Background"]
+margin_left = 484.0
+margin_top = 653.0
+margin_right = 1444.0
+margin_bottom = 788.0
+custom_fonts/font = ExtResource( 3 )
+secret = true
+
+[node name="senha" type="Label" parent="Background/Senha"]
+margin_top = -60.0
+margin_right = 120.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Senha"
+
+[node name="messageError" type="Label" parent="Background"]
+margin_left = 1440.0
+margin_top = 800.0
+margin_right = 1840.0
+margin_bottom = 880.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="Background/Entrar_I" to="." method="_on_Entrar_I_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

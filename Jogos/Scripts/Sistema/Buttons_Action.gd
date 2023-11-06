@@ -1,69 +1,41 @@
 extends Control
 
-func _ready():
-# warning-ignore:return_value_discarded
-	Firebase.Auth.connect("signup_succeeded", self, "_on_FirebaseAuth_signup_succeeded")
-# warning-ignore:return_value_discarded
-	Firebase.Auth.connect("signup_failed", self, "on_signup_failed")
-# warning-ignore:return_value_discarded
-	Firebase.Auth.connect("login_succeeded", self, "login_succeeded")
-# warning-ignore:return_value_discarded
-	Firebase.Auth.connect("login_failed", self, "login_failed")
-
 #Cena Main:
 func _on_Iniciar_pressed():
-	FadeTransitions.fade_in("res://Cenas/LoginseRegistros/LoginFisio.tscn")
+	FadeTransitions.fade_in("res://Cenas/LoginseRegistros/LoginInsti.tscn")
 
 func _on_Sair_pressed():
 	get_tree().quit()  # Isso fecha o jogo
+	
 #---------------------------------------------------------------------------
+func _on_Entrar_I_pressed():
+	if $Background/Email.text.empty() or $Background/Senha.text.empty():
+		$Background/messageError.text = "Please, enter your username and password"
+		return
+	Global.instituition = $Background/Email.text
+	Firebase.login($Background/Email.text, $Background/Senha.text, $HTTPRequest)
 
-#Cena Login/Registro de Fisioterapeuta
-func _on_novo_Registro_F_pressed():
-	FadeTransitions.fade_in("res://Cenas/LoginseRegistros/RegistroFisio.tscn")
-
-func _on_Registrar_F_pressed():
-	var emailF = $Background/Email.text
-	var senhaF = $Background/Senha.text
-	
-	Firebase.Auth.signup_with_email_and_password(emailF, senhaF)
-
-func _on_FirebaseAuth_signup_succeeded(auth_info):
-	var emailF = $Background/Email.text
-	print("error code: " + str(auth_info))
-	createTextFile("res://ArquivosDoSistema/Fisioterapeutas.txt",emailF)
-	FadeTransitions.fade_in("res://Cenas/LoginseRegistros/LoginPaciente.tscn")
-	
-func on_signup_failed(error_code, message):
-	print("error code: " + str(error_code))
-	$Background/messageError.text = message
-	
-func _on_Entrar_F_pressed():
-	Firebase.Auth.login_with_email_and_password($Background/DropdownFisios.text,$Background/Senha.text)
-	Global.instituition = $Background/DropdownFisios.text
-	
-func login_succeeded(_auth_info: Dictionary):
-	FadeTransitions.fade_in("res://Cenas/LoginseRegistros/LoginPaciente.tscn")
-	#print("LOGIN SUCESSO: ")
-
-func login_failed(code, message: String):
-	$Background/messageError.text = message
-	print("Erro: " + str(code))
+func _on_HTTPRequest_request_completed(result, response_code, headers, body):
+	var response_body := JSON.parse(body.get_string_from_ascii())
+	if response_code != 200:
+		$Background/messageError.text = response_body.result.error.message.capitalize()
+		print($Background/messageError.text)
+	else:
+		$Background/messageError.text = "Sign in sucessful!"
+		FadeTransitions.fade_in("res://Cenas/LoginseRegistros/LoginFisio.tscn")
 #-------------------------------------
 
 #Cena Login/Registro de Paciente
-func _on_novo_Registro_P_pressed():
-	FadeTransitions.fade_in("res://Cenas/LoginseRegistros/RegistroPaciente.tscn")
-	
 func _on_Registrar_P_pressed():
 	var nomeP = $Background/LineEdit.text
-	createTextFile("res://ArquivosDoSistema/Pacientes.txt",nomeP)
-	FadeTransitions.fade_in("res://Cenas/SelectGame.tscn")
+	var inst = Global.get_instituition()
 	
-func _on_Entrar_P_pressed():
-	if $Background/DropdownPacientes.text != "Selecione o paciente":
-		Global.paciente_atual = $Background/DropdownPacientes.text
-		FadeTransitions.fade_in("res://Cenas/SelectGame.tscn")
+	var profile := {
+		"name":{"stringValue": nomeP },
+	}
+	Firebase.save_document("Instituitions/"+inst+"/Pacientes?documentId=%s"%nomeP,profile,$HTTPRequest_RP)
+	FadeTransitions.fade_in("res://Cenas/SelectGame.tscn")
+
 #-------------------------------
 
 #Cena de Seleção de jogo
@@ -75,28 +47,18 @@ func _on_Ini_Jogo_pressed():
 		FadeTransitions.fade_in("res://Cenas/Jogo1.tscn")
 	elif selected_index == 2:
 		FadeTransitions.fade_in("res://Cenas/jogo2.tscn")
-	
-func createTextFile(filePath: String, content: String):
-	var file = File.new()
-	if file.file_exists(filePath):
-		if file.open(filePath, File.READ_WRITE) == OK:
-			var existingContent = file.get_as_text()
-			existingContent += "\n" + content
-			file.store_string(existingContent)
-			file.close()
-			print("Conteúdo adicionado ao arquivo existente.")
-		else:
-			print("Não foi possível abrir o arquivo para edição.")
-	else:
-		if file.open(filePath, File.WRITE) == OK:
-			file.store_string(content)
-			file.close()
-			print("Arquivo de texto criado com sucesso!")
-		else:
-			print("Não foi possível criar o arquivo de texto.")
 
 
 
-func _on_esqueciSenha_pressed():
-	var email = $Background/DropdownFisios.text
-	Firebase.Auth.send_password_reset_email(email)
+func _on_HTTPRequest_RP_request_completed(result, response_code, headers, body):
+	print(body.get_string_from_ascii())
+	print("response code: ",response_code)
+	var result_body := JSON.parse(body.get_string_from_ascii()).result as Dictionary
+	match response_code:
+		404:
+			$messageError.text = "Please, enter your information"
+			return
+		200:
+			$messageError.text = "Information saved successfully"
+		_:
+			print("Unhandled response code:", response_code)
