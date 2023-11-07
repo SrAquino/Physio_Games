@@ -30,7 +30,8 @@ func _on_OptionButton_item_selected(ID):
 	set_physics_process(false)
 	PORT.close()
 	if port!=null and ID!=0:
-		PORT.open("/dev/ttyUSB1",115200,1000)
+		#PORT.open("/dev/ttyUSB1",115200,1000)
+		PORT.open("COM6",115200,1000)
 	else:
 		print("You must select a port first")
 	set_physics_process(true)

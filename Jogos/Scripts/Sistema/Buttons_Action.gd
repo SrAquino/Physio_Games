@@ -27,13 +27,20 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 
 #Cena Login/Registro de Paciente
 func _on_Registrar_P_pressed():
-	var nomeP = $Background/LineEdit.text
+	var CPF = $Background/LineEdit.text
+	var nomeP = $Background/LineEdit2.text
 	var inst = Global.get_instituition()
+	
+	Global.paciente_atual = nomeP
+	Global.paciente_cpf = CPF
 	
 	var profile := {
 		"name":{"stringValue": nomeP },
 	}
-	Firebase.save_document("Instituitions/"+inst+"/Pacientes?documentId=%s"%nomeP,profile,$HTTPRequest_RP)
+	Firebase.save_document("Instituitions/"+inst+"/Pacientes?documentId=%s"%CPF,profile,$HTTPRequest_RP)
+	#Firebase.save_document("Instituitions/"+inst+"/Pacientes/"+CPF+"/Jogos?documentId=%s"%"AsteroideTerapia",{},$HTTPRequest_RP)
+	#Firebase.save_document("Instituitions/"+inst+"/Pacientes/"+CPF+"/Jogos?documentId=%s"%"PongTerapia",{},$HTTPRequest_RP)
+	
 	FadeTransitions.fade_in("res://Cenas/SelectGame.tscn")
 
 #-------------------------------
@@ -51,8 +58,6 @@ func _on_Ini_Jogo_pressed():
 
 
 func _on_HTTPRequest_RP_request_completed(result, response_code, headers, body):
-	print(body.get_string_from_ascii())
-	print("response code: ",response_code)
 	var result_body := JSON.parse(body.get_string_from_ascii()).result as Dictionary
 	match response_code:
 		404:

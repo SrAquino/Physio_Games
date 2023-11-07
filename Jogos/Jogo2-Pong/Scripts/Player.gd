@@ -12,6 +12,7 @@ var ob_barrier : Object = null
 var multiplayer_running = false
 var move_vec : Vector3 = Vector3(0, 0, 0)
 export(int) var side : int = 1
+var ultimo_movimento = 0
 
 #Carregando a cena de barreira usada para o "power up" do coração
 
@@ -39,20 +40,43 @@ func _physics_process(delta):
 			if abs(move_vec.x) > 0:
 				var _x = move_and_collide(move_vec * speed * delta)
 		elif not multiplayer_running or is_network_master():
-			if Input.is_action_pressed("ui_left"):
-				move_vec = Vector3(side, 0, 0)
-			elif Input.is_action_pressed("ui_right"):
-				move_vec = Vector3(-side, 0, 0)
-			else:
-				move_vec = Vector3(0, 0, 0)
+			#movePlayer_teclado(delta)
+			movePlayer_espUSB(delta)
+			
 			if Input.is_action_just_pressed("ui_cancel"):
 				get_tree().quit()
 			if multiplayer_running and is_network_master():
 				rpc("update_button", move_vec)
 		var _x = move_and_collide(move_vec * speed * delta)
-		#if Networking._is_server():
-			#rpc_unreliable("pos_update", translation)
-	pass
+		
+
+func movePlayer_teclado(delta: float):
+	if Input.is_action_pressed("ui_left"):
+		move_vec = Vector3(side, 0, 0)
+	elif Input.is_action_pressed("ui_right"):
+		move_vec = Vector3(-side, 0, 0)
+	else:
+		move_vec = Vector3(0, 0, 0)
+	
+func movePlayer_espUSB(delta: float):
+	if int(SimpleConsole.get_node("Title").text) == 1:
+		move_vec = Vector3(-side, 0, 0)
+		if ultimo_movimento == 1:
+			Global.movimentos += 1
+			
+		ultimo_movimento = -1 
+		
+	elif int(SimpleConsole.get_node("Title").text) == 2:
+		move_vec = Vector3(side, 0, 0)
+		if ultimo_movimento == -1:
+			Global.movimentos += 1
+			
+		ultimo_movimento = 1
+		
+	elif int(SimpleConsole.get_node("Title").text) == 3:
+		ultimo_movimento = 0
+	else:
+		move_vec = Vector3(ultimo_movimento, 0, 0)
 
 remote func update_button(vec_axys):
 	move_vec = vec_axys

@@ -15,6 +15,7 @@ func _ready():
 	SimpleConsole._on_OptionButton_item_selected(1)
 
 func _process(_delta):
+	Global.game_time += _delta
 	$Enemy_cadence.set_wait_time(enemy_cadence)
 
 	

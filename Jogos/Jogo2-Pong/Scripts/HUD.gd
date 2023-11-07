@@ -56,7 +56,8 @@ func _ready():
 	pass
 
 func _process(_delta):
-	randomize()	
+	randomize()
+	Global.game_time += _delta
 	#call_power(_delta)
 
 #Geração dos power ups e resetamento do timer
@@ -134,6 +135,9 @@ remotesync func update_score(player):
 #	if not Networking._is_running_multiplayer():
 	$Label.text = "Your score: " + str(score[0])
 	$Label.text += "\nCpu score: " + str(score[1])
+	
+	if score[1] >= 3:
+		FadeTransitions.fade_in("res://Jogo1-Asteroid/Cenas/FimdeJogo1.tscn")
 #	else:
 #		if Networking._is_server():
 #			$Label.text = "Your score: " + str(score[0])

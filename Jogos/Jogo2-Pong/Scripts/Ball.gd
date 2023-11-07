@@ -61,6 +61,7 @@ func _on_RigidBody_body_entered(body):
 		$Ricoch.play()
 	else:
 		$Ricoch2.play()
+		Global.global_score += 1
 	pass
 
 func change_speed(value, relative):

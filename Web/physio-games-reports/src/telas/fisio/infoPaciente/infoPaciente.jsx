@@ -18,36 +18,47 @@ export default function InfoPaciente() {
 
   const [partidas, setPartidas] = useState([{}]);
 
+  const [series, setSeries] = useState([{}]);
+  const [selectedVariavel, setSelectedVar] = useState('')
+
+
+  const instituitionEmail = String(localStorage.getItem('inst')).replace(/['"]+/g, '');
+
   useEffect(() => {
-    const fetchPacientes = async () => {
+    const paciente = String(localStorage.getItem('paciente')).replace(/['"]+/g, '');
+    setNome(paciente);
+
+    /*const fetchPacientes = async () => {
       try {
-        const paciente = String(localStorage.getItem('paciente')).replace(/['"]+/g, '');
-        setNome(paciente);
-
-        const instituitionEmail = String(localStorage.getItem('inst')).replace(/['"]+/g, '');
-        const instDocRef = collection(db, 'Instituitions', instituitionEmail, 'Pacientes', paciente, "Partida");
-        const pacientesSnapshot = await getDocs(instDocRef);
-
-        const partidasData = [];
-        pacientesSnapshot.forEach((doc) => {
-          partidasData.push({id: doc.id, score: doc.data().Score, data: doc.data().Data});
-        });
-
-        setPartidas(partidasData);
-
+        
       } catch (e) {
         console.error(e);
-
       }
     }
 
-    fetchPacientes();
+    fetchPacientes();*/
 
-    
-    setJogos(['jogo 1', 'jogo 2', 'jogo 3'])
-    setVariaveis(['Pontuação', 'Desempenho', 'Dificuldade'])
+
+    setJogos(['AsteroideTerapia', 'PongTerapia'])
+    setVariaveis(['Pontuação', 'Tempo', 'Movimentos'])
     return () => { }
   }, [])
+
+  useEffect(() => {
+    console.log(partidas)
+    setSeries([{
+      name: 'Teste',
+      data: partidas.map((entry) => {
+        return {
+          x: entry.id,
+          y: entry[selectedVariavel],
+        };
+      })
+    }])
+
+
+  }, [partidas, selectedVariavel])
+
 
 
 
@@ -62,22 +73,38 @@ export default function InfoPaciente() {
     }
   }
 
-  const series = [{
-    name: 'Teste',
-    data: partidas.map((entry) => {
-      return {
-        x: entry.id,
-        y: entry.score,
-      };
-    })
-  }];
-
-  const handleChangeJogo = (event) => {
+  const handleChangeJogo = async (event) => {
     setJogo(event.target.value);
+
+    const instDocRef = collection(db, 'Instituitions', instituitionEmail, 'Pacientes', nome, "Jogos", event.target.value, 'Sessões');
+    const pacientesSnapshot = await getDocs(instDocRef);
+
+    const partidasData = [];
+    pacientesSnapshot.forEach((doc) => {
+      partidasData.push({ id: doc.id, score: doc.data().Score, time: doc.data().Time, data: doc.data().Data, moves: doc.data().Movimentos });
+    });
+
+    setPartidas(partidasData);
   };
 
   const handleChangeVar = (event) => {
     setVariavel(event.target.value);
+
+    switch (event.target.value) {
+      case 'Pontuação':
+        setSelectedVar('score');
+        break;
+
+      case 'Tempo':
+        setSelectedVar('time');
+        break;
+
+      case 'Movimentos':
+        setSelectedVar('moves');
+        break;
+      default:
+        setSelectedVar('_');
+    }
   };
 
 
@@ -96,6 +123,7 @@ export default function InfoPaciente() {
               onChange={handleChangeJogo}
               label="Age"
             >
+              <option value="_">Selecione um jogo</option>
               {jogos.map((jogo) => (
                 <option key={jogo} value={jogo}>
                   {jogo}
@@ -110,6 +138,7 @@ export default function InfoPaciente() {
               label="Age"
               required={true}
             >
+              <option value="_">Selecione uma variável</option>
               {variaveis.map((variavel) => (
                 <option key={variavel} value={variavel}>
                   {variavel}
@@ -120,7 +149,7 @@ export default function InfoPaciente() {
         </div>
 
         <div className="info-patiente">
-          <label className='tag_longa'>Grafico de {variavel} x Sessão</label>
+          <label className='tag_longa'>Grafico de {variavel} x Sessão no jogo {jogo}</label>
           <ReactApexChart
             options={options}
             series={series}

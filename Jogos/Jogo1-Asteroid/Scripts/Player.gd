@@ -66,16 +66,24 @@ func movePlayer_espUSB(delta: float):
 	
 	if int(SimpleConsole.get_node("Title").text) == 1:
 		translate(Vector2(1 * speed * delta, 0))
+		if ultimo_movimento == -1:
+			Global.movimentos += 1
+			
 		ultimo_movimento = 1 
+		
 	elif int(SimpleConsole.get_node("Title").text) == 2:
 		translate(Vector2(-1 * speed * delta, 0)) 
+		if ultimo_movimento == 1:
+			Global.movimentos += 1
+			
 		ultimo_movimento = -1
+		
 	elif int(SimpleConsole.get_node("Title").text) == 3:
 		ultimo_movimento = 0
 	else:
 		translate(Vector2(ultimo_movimento * speed * delta, 0)) 
 		
-	#translate(Vector2(0,Input.get_axis("ui_up","ui_down") * speed * delta))
+	
 	
 	
 func _on_Area2D_area_entered(_area):

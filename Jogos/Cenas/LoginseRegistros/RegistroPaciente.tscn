@@ -42,10 +42,11 @@ align = 1
 valign = 1
 
 [node name="LineEdit" type="LineEdit" parent="Background"]
-margin_left = 480.0
-margin_top = 440.0
-margin_right = 1440.0
-margin_bottom = 575.0
+margin_left = 464.0
+margin_top = 381.0
+margin_right = 1424.0
+margin_bottom = 516.0
+rect_pivot_offset = Vector2( 150, 68 )
 custom_fonts/font = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="Background/LineEdit"]
@@ -55,7 +56,7 @@ margin_right = 150.0
 margin_bottom = -6.0
 theme = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Nome"
+text = "CPF"
 
 [node name="Registrar_P" type="Button" parent="Background"]
 margin_left = 1440.0
@@ -64,6 +65,23 @@ margin_right = 1840.0
 margin_bottom = 960.0
 custom_fonts/font = ExtResource( 4 )
 text = "Registrar"
+
+[node name="LineEdit2" type="LineEdit" parent="Background"]
+margin_left = 455.0
+margin_top = 632.0
+margin_right = 1415.0
+margin_bottom = 767.0
+rect_pivot_offset = Vector2( 150, 68 )
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="Background/LineEdit2"]
+margin_left = 4.0
+margin_top = -66.0
+margin_right = 150.0
+margin_bottom = -6.0
+theme = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Nome"
 
 [node name="HTTPRequest_RP" type="HTTPRequest" parent="."]
 
@@ -74,6 +92,8 @@ margin_right = 1840.0
 margin_bottom = 880.0
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [connection signal="pressed" from="Background/Registrar_P" to="." method="_on_Registrar_P_pressed"]
 [connection signal="request_completed" from="HTTPRequest_RP" to="." method="_on_HTTPRequest_RP_request_completed"]

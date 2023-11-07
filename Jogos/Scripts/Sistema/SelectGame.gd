@@ -6,7 +6,9 @@ export var jogoSelecionado = 0
 
 func _ready():
 	add_items()
-	pass 
+	Global.global_score = 0
+	Global.game_time = 0.0
+	Global.movimentos = 0
 
 func add_items():
 	for n in capas.get_children():

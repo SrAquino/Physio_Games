@@ -2,8 +2,7 @@ extends Control
 
 func _ready():
 	var score_label = $Backgroun/Potuacao/Points
-	var score = Global.get_score()
-	score_label.text = str(score)
+	score_label.text =  Global.get_score()
 	
 	atualizaBD()
 	
@@ -39,3 +38,4 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 			$messageError.text = "Information saved successfully"
 		_:
 			print("Unhandled response code:", response_code)
+

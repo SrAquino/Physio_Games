@@ -52,6 +52,7 @@ text = "Entrar"
 
 [node name="HTTPRequest_LP" type="HTTPRequest" parent="."]
 
+[connection signal="item_selected" from="Background/DropdownPacientes" to="." method="_on_DropdownPacientes_item_selected"]
 [connection signal="pressed" from="Background/novo_Registro_P" to="." method="_on_novo_Registro_P_pressed"]
 [connection signal="pressed" from="Background/Entrar_P" to="." method="_on_Entrar_P_pressed"]
 [connection signal="request_completed" from="HTTPRequest_LP" to="." method="_on_HTTPRequest_LP_request_completed"]

@@ -21,9 +21,10 @@ func _on_HTTPRequest_LF_request_completed(result, response_code, headers, body):
 				information_sent = false
 			
 			$Background/DropdownFisios.add_item('Selecione o fisioterapeuta')
-			for document in result_body.documents:
-				if document != null:
-					$Background/DropdownFisios.add_item(document.fields.name.stringValue)
+			if str(result_body) != "{}":
+				for document in result_body.documents:
+					if document != null:
+						$Background/DropdownFisios.add_item(document.fields.name.stringValue)
 
 func _on_DropdownFisios_item_selected(index):
 	Global.currentFisio = result_body.documents[index-1].fields
