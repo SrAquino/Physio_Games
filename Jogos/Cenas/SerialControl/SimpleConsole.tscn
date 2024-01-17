@@ -1,38 +1,76 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Cenas/SerialControl/SimpleConsole.gd" type="Script" id=1]
+[ext_resource path="res://Fontes/Fontes_Formatadas/BarraSuperior.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Cenas/SerialControl/Com.gd" type="Script" id=2]
+[ext_resource path="res://Fontes/Fontes_Formatadas/Botoes.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Fontes/Fontes_Formatadas/insideDropdownAndLineEdit.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Cenas/SerialControl/SimpleConsole.gd" type="Script" id=5]
+[ext_resource path="res://Fontes/Arial/arial.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=2]
+size = 45
+font_data = ExtResource( 6 )
+
+[sub_resource type="Theme" id=3]
+default_font = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 6 )
 
 [node name="Control" type="Control"]
-script = ExtResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -1028, 906 )
+script = ExtResource( 5 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="BarraSuperior" type="ColorRect" parent="ColorRect"]
+anchor_right = 1.0
+margin_bottom = 158.0
+color = Color( 0, 0.2, 0.6, 1 )
+
+[node name="Label" type="Label" parent="ColorRect/BarraSuperior"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 1 )
+text = "Conecte o controle"
+align = 1
+valign = 1
 
 [node name="LineEdit" type="LineEdit" parent="."]
-margin_left = 43.0
-margin_top = 85.3383
-margin_right = 457.0
-margin_bottom = 119.338
+margin_left = -522.0
+margin_top = 124.0
+margin_right = -464.0
+margin_bottom = 158.0
 
 [node name="SendButton" type="Button" parent="."]
-margin_left = 494.0
-margin_top = 78.3383
-margin_right = 553.0
-margin_bottom = 130.338
+margin_left = -451.0
+margin_top = 131.0
+margin_right = -392.0
+margin_bottom = 151.0
 text = "Send"
 
 [node name="OptionButton" type="OptionButton" parent="."]
-margin_left = 454.168
-margin_top = 448.503
-margin_right = 564.168
-margin_bottom = 468.503
+light_mask = 7
+margin_left = -178.0
+margin_top = 132.11
+margin_right = -68.0
+margin_bottom = 152.11
 hint_tooltip = "Baudrate selection is what will open the port
 "
 toggle_mode = false
 
 [node name="Baudrate" type="Label" parent="."]
-margin_left = 374.168
-margin_top = 452.503
-margin_right = 449.168
-margin_bottom = 466.503
+light_mask = 7
+margin_left = -258.0
+margin_top = 136.11
+margin_right = -183.0
+margin_bottom = 150.11
 text = "Baudrate:"
 uppercase = true
 
@@ -40,50 +78,81 @@ uppercase = true
 script = ExtResource( 2 )
 
 [node name="UpdateButton" type="Button" parent="."]
-margin_left = 231.168
-margin_top = 443.503
-margin_right = 262.168
-margin_bottom = 469.503
+light_mask = 7
+margin_left = 1274.0
+margin_top = 606.0
+margin_right = 1674.0
+margin_bottom = 686.0
 hint_tooltip = "Refresh Port list"
-text = "R"
+custom_fonts/font = ExtResource( 3 )
+text = "Atualizar dispositivos"
 
 [node name="PortList" type="OptionButton" parent="."]
-margin_left = 106.168
-margin_top = 442.503
-margin_right = 215.168
-margin_bottom = 469.503
+light_mask = 7
+margin_left = 259.0
+margin_top = 578.0
+margin_right = 1219.0
+margin_bottom = 713.0
+theme = SubResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 toggle_mode = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 58.1645
-margin_top = 157.671
-margin_right = 449.164
-margin_bottom = 398.671
+margin_left = 1398.0
+margin_top = 285.0
+margin_right = 1789.0
+margin_bottom = 526.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/mono_font = ExtResource( 3 )
 bbcode_enabled = true
 scroll_following = true
 
 [node name="CheckBox" type="CheckBox" parent="."]
-margin_left = 500.438
-margin_top = 164.832
-margin_right = 579.438
-margin_bottom = 190.832
+margin_left = -374.0
+margin_top = 130.11
+margin_right = -283.0
+margin_bottom = 156.11
 hint_tooltip = "Adds endline at the end of the text sended
 "
 text = "w/endline"
 
 [node name="Title" type="Label" parent="."]
-margin_left = 190.457
-margin_top = 45.1125
-margin_right = 345.457
-margin_bottom = 64.1125
+margin_left = -452.0
+margin_top = 69.0
+margin_right = -76.0
+margin_bottom = 105.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
 text = "BASIC SERIAL MONITOR"
 
 [node name="dir" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = 285.0
+margin_top = 430.0
+margin_right = 325.0
+margin_bottom = 444.0
 
-[connection signal="gui_input" from="LineEdit" to="." method="_on_LineEdit_gui_input"]
-[connection signal="pressed" from="SendButton" to="." method="_on_SendButton_pressed"]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 968, -698 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 1335.0
+margin_top = 907.0
+margin_right = 1817.0
+margin_bottom = 999.0
+custom_fonts/font = ExtResource( 3 )
+disabled = true
+text = "Prosseguir"
+
+[node name="ok" type="Label" parent="."]
+margin_left = 264.0
+margin_top = 514.0
+margin_right = 667.0
+margin_bottom = 550.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "SELECIONE O CONTROLE"
+
 [connection signal="item_selected" from="OptionButton" to="." method="_on_OptionButton_item_selected"]
 [connection signal="pressed" from="UpdateButton" to="." method="_on_UpdateButton_pressed"]
 [connection signal="item_selected" from="PortList" to="." method="_on_PortList_item_selected"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

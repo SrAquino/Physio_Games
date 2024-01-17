@@ -16,12 +16,13 @@ font_data = SubResource( 1 )
 [node name="Jogo1" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1918.0
+margin_bottom = 1073.0
+color = Color( 0.505882, 0.505882, 0.505882, 1 )
+
 [node name="Enemy_cadence" type="Timer" parent="."]
 autostart = true
-
-[node name="BackgroundSpace" type="Sprite" parent="."]
-texture = ExtResource( 1 )
-centered = false
 
 [node name="HUD" type="CanvasLayer" parent="." groups=["hud"]]
 script = ExtResource( 3 )
@@ -47,5 +48,9 @@ position = Vector2( 149, 25 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 hframes = 2
+
+[node name="BackgroundSpace" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
 
 [connection signal="timeout" from="Enemy_cadence" to="." method="_on_Timer_timeout"]

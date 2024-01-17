@@ -63,9 +63,14 @@ export default function InfoPaciente() {
 
 
   const options = {
-    xaxis: {
-      type: 'datetime'
-    },
+    chart: {
+      id: 'area-datetime',
+      type: 'area',
+      height: 350,
+      zoom: {
+        autoScaleYaxis: true
+      }},
+    
     yaxis: {
       tooltip: {
         enabled: true
@@ -114,8 +119,9 @@ export default function InfoPaciente() {
       <Menu />
 
       <div className="info-patient-area">
+      <label className='tag_longa'>{nome}</label>
         <div className="selects">
-          <label className='tag_longa'>{nome}</label>
+          
           <form action="">
             <select
               id="demo-simple-select-standard"

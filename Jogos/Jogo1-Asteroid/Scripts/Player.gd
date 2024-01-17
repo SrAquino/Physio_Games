@@ -66,14 +66,14 @@ func movePlayer_espUSB(delta: float):
 	
 	if int(SimpleConsole.get_node("Title").text) == 1:
 		translate(Vector2(1 * speed * delta, 0))
-		if ultimo_movimento == -1:
+		if ultimo_movimento == -1 || ultimo_movimento == 0 :
 			Global.movimentos += 1
 			
 		ultimo_movimento = 1 
 		
 	elif int(SimpleConsole.get_node("Title").text) == 2:
 		translate(Vector2(-1 * speed * delta, 0)) 
-		if ultimo_movimento == 1:
+		if ultimo_movimento == 1 || ultimo_movimento == 0:
 			Global.movimentos += 1
 			
 		ultimo_movimento = -1

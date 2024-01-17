@@ -2,7 +2,8 @@ extends Control
 
 #Cena Main:
 func _on_Iniciar_pressed():
-	FadeTransitions.fade_in("res://Cenas/LoginseRegistros/LoginInsti.tscn")
+	#FadeTransitions.fade_in("res://Cenas/LoginseRegistros/LoginInsti.tscn")
+	FadeTransitions.fade_in("res://Cenas/SerialControl/SelectSerial.tscn")
 
 func _on_Sair_pressed():
 	get_tree().quit()  # Isso fecha o jogo
@@ -52,8 +53,10 @@ func _on_Ini_Jogo_pressed():
 		pass
 	elif selected_index == 1:
 		FadeTransitions.fade_in("res://Cenas/Jogo1.tscn")
+		SimpleConsole.get_node("Camera2D").current = false
 	elif selected_index == 2:
 		FadeTransitions.fade_in("res://Cenas/jogo2.tscn")
+		SimpleConsole.get_node("Camera2D").current = true
 
 
 

@@ -42,12 +42,7 @@ function MenuAdm() {
               Remover <br /> fisioterapeuta
             </Link>
           </li>
-          <li id='att-f'>
-            <Link to="/atualizar-fisio">
-              <FaUserEdit className="icon" />
-              Atualizar <br /> fisioterapeuta
-            </Link>
-          </li>
+       
           <li>
             <Link to="/" onClick={handleLogOut}>
               <FaSignOutAlt className="icon" />

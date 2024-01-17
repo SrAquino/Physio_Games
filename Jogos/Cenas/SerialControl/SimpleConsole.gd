@@ -7,7 +7,7 @@ onready var PORT = SERCOMM.new()
 onready var com=$Com 
 #use it as node since script alone won't have the editor help
 
-var port = 1
+var port = "COM6"
 
 func _ready():
 	#adding the baudrates options
@@ -22,6 +22,8 @@ func _physics_process(_delta):
 	if PORT.get_available()>0:
 		for _i in range(PORT.get_available()):
 			$Title.text = PORT.read()
+			$ok.text = 'Controle conectado!'
+			$Button.disabled = false
 
 func _on_SendButton_pressed():
 	send_text()
@@ -31,7 +33,7 @@ func _on_OptionButton_item_selected(ID):
 	PORT.close()
 	if port!=null and ID!=0:
 		#PORT.open("/dev/ttyUSB1",115200,1000)
-		PORT.open("COM6",115200,1000)
+		PORT.open(port,115200,1000)
 	else:
 		print("You must select a port first")
 	set_physics_process(true)
@@ -45,6 +47,7 @@ func _on_UpdateButton_pressed(): #Updates the port list
 func _on_PortList_item_selected(ID):
 	port=$PortList.get_item_text(ID)
 	$OptionButton.select(0)
+	_on_OptionButton_item_selected(1)
 
 func _on_LineEdit_gui_input(ev):
 	if ev is InputEventKey and ev.scancode==KEY_ENTER:
@@ -60,3 +63,7 @@ func send_text():
 
 	PORT.write(text) #write function, please use only ascii
 	$LineEdit.text=""
+
+
+func _on_Button_pressed():
+	FadeTransitions.fade_in("res://Cenas/LoginseRegistros/LoginInsti.tscn")

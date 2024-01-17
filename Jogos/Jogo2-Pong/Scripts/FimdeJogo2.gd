@@ -3,6 +3,8 @@ extends Control
 func _ready():
 	var score_label = $Backgroun/Potuacao/Points
 	score_label.text =  Global.get_score()
+	SimpleConsole.get_node("Camera2D").current = false
+	$Camera2D.current = true
 	
 	atualizaBD()
 	

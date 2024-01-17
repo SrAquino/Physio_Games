@@ -3,19 +3,20 @@
     position: relative;
     left: 100px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    max-width: 90vw;
 
     .selects {
         min-width: 270px;
+        
         display: flex;
-        flex-direction: column;
-        gap: 20px;
+        flex-direction: row;
+        margin-bottom: 100px;
 
         form {
             display: flex;
-            flex-direction: column;
-
+            flex-wrap: wrap;
             gap: 200px;
 
         }

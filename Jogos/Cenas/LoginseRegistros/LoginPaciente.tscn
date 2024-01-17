@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Sistema/LoginPaciente.gd" type="Script" id=1]
 [ext_resource path="res://Fontes/Fontes_Formatadas/insideDropdownAndLineEdit.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Fontes/Arial/arial.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Fontes/Fontes_Formatadas/Botoes.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Fontes/Fontes_Formatadas/BarraSuperior.tres" type="DynamicFont" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 45
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -32,6 +40,7 @@ margin_left = 480.0
 margin_top = 440.0
 margin_right = 1440.0
 margin_bottom = 575.0
+theme = SubResource( 2 )
 custom_fonts/font = ExtResource( 2 )
 
 [node name="novo_Registro_P" type="Button" parent="Background"]

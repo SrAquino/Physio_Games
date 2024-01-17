@@ -1,14 +1,15 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAI5VQnpLAJu1-zhlPth7XlYnjlrdjA1Ag",
-    authDomain: "physiogamesrelatorios.firebaseapp.com",
-    databaseURL: "https://physiogamesrelatorios-default-rtdb.firebaseio.com",
-    projectId: "physiogamesrelatorios",
-    storageBucket: "physiogamesrelatorios.appspot.com",
-    messagingSenderId: "1092665542956",
-    appId: "1:1092665542956:web:b814f6e3806fd75a5b0489"
-  };
+  apiKey: "AIzaSyA-MwMEMf5cnnXCE6FPnjGvA8isKA1RpYc",
+  authDomain: "physio-games-30d75.firebaseapp.com",
+  //databaseURL: "",
+  projectId: "physio-games-30d75",
+  storageBucket: "physio-games-30d75.appspot.com",
+  messagingSenderId: "1096339797398",
+  appId: "1:1096339797398:web:fecc22c7aba981bffe59b7"
+};
+
 
   const app = initializeApp(firebaseConfig);
 
